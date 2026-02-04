@@ -3,13 +3,12 @@ import styled from 'styled-components';
 export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 15px 40px;
+  justify-content: flex-start; // Змінюємо тут
+  padding: 15px 0;
   background-color: #ffffff;
-  border-bottom: 2px solid #3498db;
+  width: 100%;
 `;
 
-// Додав export сюди
 export const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -19,38 +18,33 @@ export const LogoWrapper = styled.div`
   }
 `;
 
-export const LogoText = styled.div`
-  font-family: "Montserrat Alternates", sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-  font-style: italic;
-`;
-
-// Додав export сюди
 export const NavList = styled.ul`
   display: flex;
-  gap: 40px;
+  gap: 30px; // Відстань між самими пунктами
   list-style: none;
   margin: 0;
   padding: 0;
+  margin-left: 50px; // Оцей відступ наближає меню до логотипу
 `;
 
 export const NavItem = styled.li`
   font-family: "Montserrat Alternates", sans-serif;
-  font-weight: 500; 
+  font-weight: 400;
   font-size: 16px;
   color: #000;
   cursor: pointer;
+  white-space: nowrap; // Щоб текст не переносився
+
   &:hover {
-    color: #ffb366;
+    color: #3498db;
   }
 `;
 
-// Додав export сюди
 export const ActionsWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+  margin-left: auto; // Це виштовхне блок кнопок в самий правий край
 `;
 
 export const SignUpButton = styled.button`

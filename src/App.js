@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from './components/Header/Header';
+import Hero from './components/Hero/Hero'
+import Cards from './components/Cards/Cards'
 // Імпортуємо стилі, щоб вони застосувалися
 import './index.css';
 
@@ -8,7 +10,8 @@ function App() {
     <div className="container">
       <Header />
       <main>
-        {/* Сюди піде Hero, коли скинеш макет */}
+       <Hero/>
+       <Cards/>
       </main>
     </div>
   );
