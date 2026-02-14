@@ -42,6 +42,7 @@ export const PetDescription = styled.p`
   margin: 0;
 `;
 
+
 export const SeeMoreButton = styled.button`
   background-color: #FFB366;
   border: none;

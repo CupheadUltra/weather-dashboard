@@ -21,6 +21,7 @@ export const SwiperWrapper = styled.div`
     overflow: visible !important;
   }
 
+  
   .swiper-slide {
     width: 450px; 
     height: 280px;

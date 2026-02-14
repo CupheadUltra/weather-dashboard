@@ -1,12 +1,10 @@
 import React from 'react';
-// Імпортуємо стилізовані компоненти
 import { 
   CardsGrid, CardWrapper, CardHeader, TimeText, 
   ForecastToggle, ToggleBtn, DateRow, WeatherIcon, 
   TempText, CardFooter, FooterIcon, SeeMoreBtn 
 } from './Cards.styled';
 
-// 1. Оголошуємо SingleCard (це виправить помилку 'SingleCard' is not defined)
 const SingleCard = ({ city, country, temp, time, date, day, onSeeMore }) => (
   <CardWrapper>
     <CardHeader>
@@ -30,7 +28,6 @@ const SingleCard = ({ city, country, temp, time, date, day, onSeeMore }) => (
   </CardWrapper>
 );
 
-// 2. Основний компонент Cards (це виправить помилку 'CardsGrid' is not defined)
 const Cards = ({ weatherList, onSeeMore }) => {
   return (
     <div className="container">
@@ -52,5 +49,4 @@ const Cards = ({ weatherList, onSeeMore }) => {
   );
 };
 
-// 3. ОБОВ'ЯЗКОВО додаємо export default (це виправить помилку в App.js)
 export default Cards;

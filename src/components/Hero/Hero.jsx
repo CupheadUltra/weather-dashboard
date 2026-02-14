@@ -8,15 +8,13 @@ import {
 } from '../Hero/Hero.styled';
 
 const Hero = ({ onSearch }) => {
-  // 1. Створюємо локальний стан для інпуту
   const [query, setQuery] = useState('');
 
-  // 2. Обробник натискання кнопки або Enter
   const handleSearchClick = (e) => {
     e.preventDefault();
     if (query.trim()) {
-      onSearch(query); // Викликаємо функцію, яку ми передали з App.js
-      setQuery('');    // Очищуємо поле після кліку
+      onSearch(query);
+      setQuery('');   
     }
   };
 
@@ -39,7 +37,6 @@ const Hero = ({ onSearch }) => {
         </DateWrapper>
       </InfoContainer>
 
-      {/* 3. Огортаємо в тег form, щоб пошук працював і по натисканню Enter */}
       <SearchBar as="form" onSubmit={handleSearchClick}>
         <SearchInput 
           type="text" 

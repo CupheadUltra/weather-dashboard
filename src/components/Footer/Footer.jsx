@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "../../imgs/logoForecast.svg";
-// Імпортуй свої іконки соцмереж
 import insta from "../../imgs/insta.png";
 import fb from "../../imgs/face.png";
 import wa from "../../imgs/whatsapp.png";

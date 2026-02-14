@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
-  justify-content: flex-start; // Змінюємо тут
+  justify-content: flex-start; 
   padding: 15px 0;
   background-color: #ffffff;
   width: 100%;
@@ -20,11 +20,11 @@ export const LogoWrapper = styled.div`
 
 export const NavList = styled.ul`
   display: flex;
-  gap: 30px; // Відстань між самими пунктами
+  gap: 30px;
   list-style: none;
   margin: 0;
   padding: 0;
-  margin-left: 50px; // Оцей відступ наближає меню до логотипу
+  margin-left: 50px;
 `;
 
 export const NavItem = styled.li`
@@ -33,7 +33,7 @@ export const NavItem = styled.li`
   font-size: 16px;
   color: #000;
   cursor: pointer;
-  white-space: nowrap; // Щоб текст не переносився
+  white-space: nowrap;
 
   &:hover {
     color: #3498db;
@@ -44,7 +44,7 @@ export const ActionsWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-left: auto; // Це виштовхне блок кнопок в самий правий край
+  margin-left: auto;
 `;
 
 export const SignUpButton = styled.button`
@@ -59,7 +59,6 @@ export const SignUpButton = styled.button`
   cursor: pointer;
 `;
 
-// Додав export сюди
 export const UserAvatar = styled.div`
   width: 45px;
   height: 45px;

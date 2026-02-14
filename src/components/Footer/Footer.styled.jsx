@@ -12,12 +12,11 @@ export const FooterContainer = styled.div`
   margin: 0 auto;
   padding: 0 10px;
   display: flex;
-  align-items: flex-start; /* Вирівнювання по верхньому краю */
+  align-items: flex-start;
 `;
 
 export const FooterLogo = styled.div`
-  /* Логотип залишається зліва */
-  margin-right: 150px; /* Великий відступ, щоб посунути адресу до центру */
+  margin-right: 150px; 
   
   img {
     height: 55px;
@@ -30,8 +29,6 @@ export const FooterInfoBlock = styled.div`
   flex-direction: column;
   gap: 5px;
   font-family: "Montserrat Alternates", sans-serif;
-  
-  /* Додаємо специфічний відступ для блоку адреси */
   &.address-block {
     margin-right: 120px;
   }
@@ -59,7 +56,7 @@ export const SocialWrapper = styled.div`
 
 export const SocialIcon = styled.a`
   img {
-    width: 40px; /* Розмір іконок як на скріні */
+    width: 40px;
     height: 40px;
     object-fit: contain;
   }

@@ -3,7 +3,6 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer 
 } from 'recharts';
 
-// Імпортуємо потрібні іконки
 import { 
   WiThermometer, WiHumidity, WiBarometer, WiStrongWind 
 } from "react-icons/wi";

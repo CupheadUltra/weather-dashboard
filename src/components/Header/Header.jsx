@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from '../../imgs/logoForecast.svg'; // Шлях до твого SVG
-import userIcon from '../../imgs/userlogin.png'; // Шлях до іконки юзера
+import logo from '../../imgs/logoForecast.svg';
+import userIcon from '../../imgs/userlogin.png'; 
 import { 
   StyledHeader, 
   LogoWrapper, 

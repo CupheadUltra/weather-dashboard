@@ -1,6 +1,5 @@
-import styled from 'styled-components'; // Це виправить помилку "styled is not defined"
+import styled from 'styled-components';
 
-// Додано 'export' перед кожною змінною
 export const DetailsSection = styled.section`
   background-color: #f2f2f2;
   padding: 40px 20px;

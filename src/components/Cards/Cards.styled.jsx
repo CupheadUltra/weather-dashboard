@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CardsGrid = styled.section`
   display: flex;
   justify-content: center; // Центруємо групу карток
-  gap: 40px; // Збільшуємо простір між картками
+  gap: 40px;
   padding: 50px 0;
   width: 100%;
 `;
@@ -18,7 +18,6 @@ export const CardWrapper = styled.div`
   font-family: "Montserrat Alternates", sans-serif;
   color: #000;
   
-  /* Обмежуємо ширину, щоб вони стали вужчими */
   width: 280px; 
   min-height: 450px;
   

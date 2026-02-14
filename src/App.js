@@ -13,7 +13,6 @@ function App() {
   const [activeDetails, setActiveDetails] = useState(null);
   const API_KEY = 'b75aa9e8660ddfbe229608aae9f70ff1';
 
-  // 1. Функція пошуку для Hero
   const handleSearch = async (cityName) => {
     try {
       const response = await fetch(
@@ -22,7 +21,6 @@ function App() {
       const data = await response.json();
 
       if (response.ok) {
-        // Перевіряємо, чи такого міста ще немає в списку
         setWeatherList((prev) => {
           const exists = prev.find(item => item.id === data.id);
           if (exists) return prev;
@@ -36,16 +34,14 @@ function App() {
     }
   };
 
-  // 2. Функція handleSeeMore (ВИПРАВЛЕННЯ ПОМИЛКИ Line 39)
   const handleSeeMore = async (cityData) => {
-    // Якщо натиснули на те саме місто — закриваємо
     if (activeDetails && activeDetails.id === cityData.id) {
       setActiveDetails(null);
       return;
     }
 
     try {
-      // Отримуємо поточну погоду ТА прогноз для графіка
+
       const [currentRes, forecastRes] = await Promise.all([
         fetch(`https://api.openweathermap.org/data/2.5/weather?id=${cityData.id}&units=metric&appid=${API_KEY}`),
         fetch(`https://api.openweathermap.org/data/2.5/forecast?id=${cityData.id}&units=metric&appid=${API_KEY}`)
@@ -57,7 +53,7 @@ function App() {
       if (currentRes.ok && forecastRes.ok) {
         setActiveDetails({
           ...currentData,
-          forecast: forecastData.list // Додаємо дані для графіка та списку
+          forecast: forecastData.list 
         });
       }
     } catch (error) {
@@ -71,13 +67,11 @@ function App() {
       <main>
         <Hero onSearch={handleSearch} />
         
-        {/* Передаємо weatherList та handleSeeMore у Cards */}
         <Cards 
           weatherList={weatherList} 
           onSeeMore={handleSeeMore} 
         />
 
-        {/* Секція Details з'явиться тільки якщо є activeDetails */}
         {activeDetails && <Details data={activeDetails} />}
 
         <Pets />

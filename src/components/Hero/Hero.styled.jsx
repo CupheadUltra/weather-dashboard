@@ -1,8 +1,9 @@
-import styled from 'styled-components';
-import bgImage from '../../imgs/hero-bg.png';
+import styled from "styled-components";
+import bgImage from "../../imgs/hero-bg.png";
 
 export const HeroSection = styled.section`
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${bgImage});
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(${bgImage});
   background-size: cover;
   background-position: center;
   padding: 60px 50px;
@@ -15,11 +16,10 @@ export const HeroSection = styled.section`
 `;
 
 export const HeroTitle = styled.h1`
-  /* .montserrat-alternates-bold */
-  font-weight: 700; 
+  font-weight: 700;
   font-size: 44px;
   margin-bottom: 40px;
-  text-transform: capitalize; // Щоб виглядало як у макеті
+  text-transform: capitalize;
 `;
 
 export const InfoContainer = styled.div`
@@ -33,9 +33,8 @@ export const InfoContainer = styled.div`
 `;
 
 export const InfoText = styled.p`
-  /* .montserrat-alternates-regular */
   font-family: "Montserrat Alternates", sans-serif;
-  font-weight: 400; 
+  font-weight: 400;
   font-size: 20px;
   line-height: 1.5;
   text-align: right;
@@ -54,13 +53,12 @@ export const DateWrapper = styled.div`
 `;
 
 export const DateText = styled.div`
-  /* .montserrat-alternates-light */
-  font-weight: 300; 
+  font-weight: 300;
   font-size: 22px;
-  
+
   span {
     display: block;
-    font-weight: 600; 
+    font-weight: 600;
     font-size: 26px;
     margin-top: 5px;
   }
@@ -70,7 +68,7 @@ export const SearchBar = styled.div`
   display: flex;
   width: 100%;
   max-width: 550px;
-  background-color: rgba(230, 230, 230, 0.9); // Світло-сірий як на макеті
+  background-color: rgba(230, 230, 230, 0.9);
   border-radius: 12px;
   overflow: hidden;
 `;
@@ -80,7 +78,6 @@ export const SearchInput = styled.input`
   border: none;
   background: transparent;
   padding: 15px 25px;
-  /* .montserrat-alternates-regular */
   font-family: "Montserrat Alternates", sans-serif;
   font-weight: 400;
   font-size: 16px;

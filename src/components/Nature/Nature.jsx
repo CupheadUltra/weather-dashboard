@@ -15,7 +15,6 @@ import { NatureSection, NatureTitle, SwiperWrapper } from './Nature.styled';
 
 const Nature = () => {
   const images = [nature1, nature2, nature3, nature4, nature5];
-
   return (
     <div className="container">
       <NatureSection>
