@@ -3,74 +3,147 @@ import styled from 'styled-components';
 export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
-  justify-content: flex-start; 
-  padding: 15px 0;
-  background-color: #ffffff;
-  width: 100%;
+  padding: 10px 40px;
+  background: white;
+  position: relative;
+  border-bottom: 1px solid #eee;
+  font-family: 'Montserrat Alternates', sans-serif;
+  height: 70px; /* Фіксована висота для стабільності */
 `;
 
-export const LogoWrapper = styled.div`
+export const LogoContainer = styled.div`
+  margin-right: 60px; /* Відступ від лого до Who we are */
   display: flex;
   align-items: center;
-  img {
-    height: 50px;
-    width: auto;
+  img { 
+    height: 45px; 
+    display: block;
   }
 `;
 
-export const NavList = styled.ul`
+export const NavLinks = styled.nav`
   display: flex;
-  gap: 30px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-left: 50px;
-`;
+  gap: 35px;
+  
+  @media (max-width: 1024px) { 
+    display: none; 
+  }
 
-export const NavItem = styled.li`
-  font-family: "Montserrat Alternates", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: #000;
-  cursor: pointer;
-  white-space: nowrap;
-
-  &:hover {
-    color: #3498db;
+  a { 
+    text-decoration: none; 
+    color: black; 
+    font-weight: 500;
+    font-size: 16px;
+    white-space: nowrap;
+    transition: color 0.2s;
+    
+    &:hover {
+      color: #FFB366;
+    }
   }
 `;
 
-export const ActionsWrapper = styled.div`
+export const AuthSection = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
-  margin-left: auto;
+  gap: 15px;
+  margin-left: auto; /* Притискає Sign Up та аватар вправо */
+
+  @media (max-width: 1024px) { 
+    display: none; 
+  }
 `;
 
-export const SignUpButton = styled.button`
-  font-family: "Montserrat Alternates", sans-serif;
-  font-weight: 600;
-  background-color: #ffb366;
-  color: #000;
+export const SignUpBtn = styled.button`
+  background: #FFB366;
   border: none;
   padding: 10px 25px;
   border-radius: 12px;
-  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+  transition: background 0.3s;
+
+  &:hover {
+    background: #ffa040;
+  }
 `;
 
-export const UserAvatar = styled.div`
+export const ProfileIcon = styled.img`
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background-color: #5d6d7e;
-  display: flex;
+  object-fit: cover;
+  cursor: pointer;
+`;
+
+export const MobileMenuBtn = styled.button`
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: none; 
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  gap: 10px;
+  font-family: inherit;
+  margin-left: auto; /* На мобілці кнопка Menu теж буде справа */
+
+  @media (max-width: 1024px) { 
+    display: flex; 
   }
+`;
+
+export const ArrowIcon = styled.span`
+  display: inline-block;
+  transition: transform 0.3s;
+  transform: ${props => props.isOpen ? 'rotate(90deg)' : 'rotate(0deg)'};
+`;
+
+export const MobileMenuPanel = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #E5E5E5;
+  display: ${props => (props.isOpen ? 'flex' : 'none')};
+  justify-content: space-around;
+  padding: 80px 40px;
+  z-index: 1000;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .links-col {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    a { font-size: 32px; text-decoration: none; color: black; font-weight: 500; }
+  }
+
+  .profile-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+`;
+
+export const UserName = styled.span`
+  font-weight: 600;
+  font-family: inherit;
+`;
+
+export const LogoutBtn = styled.button`
+  background: transparent;
+  border: 1px solid #ccc;
+  padding: 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
 `;

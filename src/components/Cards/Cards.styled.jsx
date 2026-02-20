@@ -1,119 +1,178 @@
 import styled from 'styled-components';
 
-export const CardsGrid = styled.section`
+export const CardsGrid = styled.div`
   display: flex;
-  justify-content: center; // Центруємо групу карток
-  gap: 40px;
-  padding: 50px 0;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 40px 20px;
   width: 100%;
+  max-width: 1250px; /* Обмежуємо, щоб на великих екранах не розповзалося */
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  @media (max-width: 1024px) {
+    gap: 20px;
+    padding: 20px 10px;
+  }
 `;
 
 export const CardWrapper = styled.div`
-  background-color: #EBEBEB;
+  background: #EBEBEB;
   border-radius: 35px;
-  padding: 25px 20px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Montserrat Alternates", sans-serif;
-  color: #000;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   
+  /* Десктопна ширина */
   width: 280px; 
-  min-height: 450px;
-  
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s;
+
+  /* Планшет: строго 2 в ряд */
+  @media (max-width: 900px) {
+    width: calc(50% - 15px); /* 50% мінус половина gap */
+    min-width: 280px;
+  }
+
+  /* Мобілка: 1 в ряд */
+  @media (max-width: 600px) {
+    width: 100%;
+    max-width: 320px;
+  }
 
   &:hover {
     transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   }
 `;
 
-export const CardHeader = styled.div`
-  width: 100%;
+export const CardTop = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
   font-weight: 500;
-  font-size: 13px;
-  margin-bottom: 15px;
-  padding: 0 5px;
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 5px;
+  
+  span:last-child {
+    color: #666;
+  }
 `;
 
 export const TimeText = styled.h2`
-  font-size: 42px;
+  font-size: 32px;
+  margin: 10px 0;
   font-weight: 500;
-  margin-bottom: 15px;
+  color: #222;
 `;
 
-export const ForecastToggle = styled.div`
+export const ForecastBtns = styled.div`
   display: flex;
   gap: 8px;
   margin-bottom: 15px;
+
+  button {
+    background: #FFB366;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #ffa040;
+    }
+  }
 `;
 
-export const ToggleBtn = styled.button`
-  background-color: #FFB366;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 12px;
-  font-family: "Montserrat Alternates", sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-`;
-
-export const DateRow = styled.div`
-  font-weight: 400;
+export const DateLine = styled.div`
   font-size: 14px;
-  margin-bottom: 25px;
-  span { margin: 0 5px; }
-`;
-
-export const WeatherIcon = styled.div`
   margin-bottom: 15px;
-  img {
-    width: 100px;
-    height: auto;
+  color: #555;
+  display: flex;
+  align-items: center;
+  
+  span { 
+    margin: 0 8px; 
+    color: #ccc; 
+    font-weight: 300;
   }
 `;
 
-export const TempText = styled.div`
-  font-size: 56px;
-  font-weight: 400;
-  margin-bottom: 30px;
-`;
-
-export const CardFooter = styled.div`
-  width: 100%;
+export const MainIcon = styled.div`
+  margin: 15px 0;
+  height: 120px; /* Фіксуємо висоту, щоб температура не "стрибала" */
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-  padding: 0 5px;
-`;
+  justify-content: center;
 
-export const FooterIcon = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-
-  img {
-    width: 20px;
-    height: 20px;
+  svg { 
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
   }
 `;
 
-export const SeeMoreBtn = styled.button`
-  background-color: #FFB366;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 12px;
-  font-family: "Montserrat Alternates", sans-serif;
-  font-size: 11px;
+export const TempValue = styled.div`
+  font-size: 46px;
   font-weight: 600;
+  margin-bottom: 15px;
+  color: #222;
+`;
+
+export const CardActions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+`;
+
+export const ActionIcon = styled.button`
+  background: transparent;
+  border: none;
   cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+
+  img { 
+    width: 22px; 
+    height: 22px;
+    object-fit: contain;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+    img { transform: scale(1.1); }
+  }
+`;
+
+export const MoreBtn = styled.button`
+  background: #FFB366;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  
+  &:hover {
+    background: #ffa040;
+    box-shadow: 0 4px 8px rgba(255, 179, 102, 0.3);
+  }
 `;

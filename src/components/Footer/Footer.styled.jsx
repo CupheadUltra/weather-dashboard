@@ -3,16 +3,24 @@ import styled from 'styled-components';
 export const StyledFooter = styled.footer`
   width: 100%;
   background-color: #FFB366; 
-  padding: 30px 0; /* Трохи вужчий футер */
+  padding: 30px 0;
   margin-top: 50px;
+  box-sizing: border-box;
 `;
 
 export const FooterContainer = styled.div`
   max-width: 1160px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 20px;
   display: flex;
   align-items: flex-start;
+
+  /* Планшет та телефон (image_24b403.png) */
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center; /* Центруємо контент */
+    gap: 40px;          /* Відстань між блоками у стовпчику */
+  }
 `;
 
 export const FooterLogo = styled.div`
@@ -22,6 +30,11 @@ export const FooterLogo = styled.div`
     height: 55px;
     width: auto;
   }
+
+  @media (max-width: 1024px) {
+    margin-right: 0;
+    align-self: flex-start; /* Лого лишається зліва, навіть якщо все інше по центру */
+  }
 `;
 
 export const FooterInfoBlock = styled.div`
@@ -29,8 +42,15 @@ export const FooterInfoBlock = styled.div`
   flex-direction: column;
   gap: 5px;
   font-family: "Montserrat Alternates", sans-serif;
+
   &.address-block {
     margin-right: 120px;
+  }
+
+  @media (max-width: 1024px) {
+    margin-right: 0 !important; /* Прибираємо десктопні відступи */
+    align-items: center;        /* Центруємо текст і іконки всередині блоку */
+    text-align: center;
   }
 `;
 
@@ -55,6 +75,11 @@ export const SocialWrapper = styled.div`
 `;
 
 export const SocialIcon = styled.a`
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.1);
+  }
+
   img {
     width: 40px;
     height: 40px;

@@ -1,53 +1,57 @@
 import React, { useState } from 'react';
-import searchIcon from '../../imgs/hero-search.png'; 
-
+// Імпортуємо всі компоненти зі стилів
 import { 
-  HeroSection, HeroTitle, InfoContainer, InfoText, 
-  Divider, DateWrapper, DateText, SearchBar, 
-  SearchInput, SearchButton 
-} from '../Hero/Hero.styled';
+  HeroSection, Title, InfoContainer, InfoText, 
+  Divider, DateBlock, SearchWrapper 
+} from './Hero.styled';
+
+// ВАРІАНТ А: Картинка в src/imgs
+import bgImg from '../../imgs/hero-bg.png'; 
+
+// ВАРІАНТ Б: Якщо картинка в public, розкоментуй рядок нижче, а імпорт вище видали:
+// const bgImg = "/image_8b8f62.jpg";
 
 const Hero = ({ onSearch }) => {
   const [query, setQuery] = useState('');
 
-  const handleSearchClick = (e) => {
-    e.preventDefault();
-    if (query.trim()) {
+  const handleSearch = () => {
+    if (onSearch && query.trim()) {
       onSearch(query);
-      setQuery('');   
     }
   };
 
   return (
-    <HeroSection>
-      <HeroTitle>Weather dashboard</HeroTitle>
-      
+    <HeroSection $bg={bgImg}>
+      <Title>Weather dashboard</Title>
+
       <InfoContainer>
         <InfoText>
           Create your personal list of favorite cities and always be aware of the weather.
         </InfoText>
         
         <Divider />
-        
-        <DateWrapper>
-          <DateText>
-            October 2023
-            <span>Friday, 13th</span>
-          </DateText>
-        </DateWrapper>
+
+        <DateBlock>
+          October 2023
+          <span>Friday, 13<sup>th</sup></span>
+        </DateBlock>
       </InfoContainer>
 
-      <SearchBar as="form" onSubmit={handleSearchClick}>
-        <SearchInput 
+      <SearchWrapper>
+        <input 
           type="text" 
           placeholder="Search location..." 
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
         />
-        <SearchButton type="submit">
-          <img src={searchIcon} alt="Search" />
-        </SearchButton>
-      </SearchBar>
+        <button onClick={handleSearch}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </SearchWrapper>
     </HeroSection>
   );
 };

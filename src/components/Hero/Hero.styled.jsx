@@ -1,96 +1,95 @@
-import styled from "styled-components";
-import bgImage from "../../imgs/hero-bg.png";
+import styled from 'styled-components';
 
 export const HeroSection = styled.section`
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url(${bgImage});
-  background-size: cover;
-  background-position: center;
-  padding: 60px 50px;
-  color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 400px;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 80px 20px;
+  /* Використовуємо пропс для фону. Якщо картинка не провантажиться, буде сірий колір */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+              url(${props => props.$bg}) no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  width: 100%;
+  color: white;
+  font-family: "Montserrat Alternates", sans-serif;
+  box-sizing: border-box;
 `;
 
-export const HeroTitle = styled.h1`
-  font-weight: 700;
-  font-size: 44px;
-  margin-bottom: 40px;
-  text-transform: capitalize;
+export const Title = styled.h1`
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 50px;
+  text-align: center;
+  @media (min-width: 1200px) { font-size: 48px; }
 `;
 
 export const InfoContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
-  margin-bottom: 50px;
+  gap: 20px;
+  margin-bottom: 60px;
   width: 100%;
-  max-width: 900px;
+  max-width: 800px;
 `;
 
 export const InfoText = styled.p`
-  font-family: "Montserrat Alternates", sans-serif;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 1.5;
-  text-align: right;
   flex: 1;
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: right;
+  margin: 0;
+  @media (min-width: 1200px) { font-size: 20px; }
 `;
 
 export const Divider = styled.div`
-  width: 2px;
-  height: 80px;
-  background-color: #ffffff;
+  width: 3px;
+  height: 100px;
+  background-color: white;
+  flex-shrink: 0;
 `;
 
-export const DateWrapper = styled.div`
+export const DateBlock = styled.div`
   flex: 1;
+  font-size: 16px;
   text-align: left;
-`;
-
-export const DateText = styled.div`
-  font-weight: 300;
-  font-size: 22px;
-
   span {
     display: block;
-    font-weight: 600;
-    font-size: 26px;
+    font-size: 18px;
+    font-weight: 700;
     margin-top: 5px;
   }
+  @media (min-width: 1200px) { font-size: 20px; span { font-size: 24px; } }
 `;
 
-export const SearchBar = styled.div`
+export const SearchWrapper = styled.div`
   display: flex;
   width: 100%;
-  max-width: 550px;
-  background-color: rgba(230, 230, 230, 0.9);
-  border-radius: 12px;
-  overflow: hidden;
-`;
+  max-width: 500px;
+  height: 50px;
+  
+  input {
+    flex: 1;
+    padding: 0 20px;
+    border: none;
+    border-radius: 15px 0 0 15px;
+    font-size: 16px;
+    background-color: rgba(217, 217, 217, 0.9);
+    outline: none;
+    color: #000;
+  }
 
-export const SearchInput = styled.input`
-  flex: 1;
-  border: none;
-  background: transparent;
-  padding: 15px 25px;
-  font-family: "Montserrat Alternates", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  outline: none;
-  color: #333;
-`;
-
-export const SearchButton = styled.button`
-  background-color: #ffb366;
-  border: none;
-  padding: 0 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  button {
+    background-color: #ffb366;
+    border: none;
+    padding: 0 20px;
+    border-radius: 0 15px 15px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover { background-color: #e69a4d; }
+  }
 `;
