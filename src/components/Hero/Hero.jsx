@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-// Імпортуємо всі компоненти зі стилів
-import { 
-  HeroSection, Title, InfoContainer, InfoText, 
-  Divider, DateBlock, SearchWrapper 
-} from './Hero.styled';
+import React, { useState } from "react";
+import {
+  HeroSection,
+  Title,
+  InfoContainer,
+  InfoText,
+  Divider,
+  DateBlock,
+  SearchWrapper,
+} from "./Hero.styled";
 
-// ВАРІАНТ А: Картинка в src/imgs
-import bgImg from '../../imgs/hero-bg.png'; 
-
-// ВАРІАНТ Б: Якщо картинка в public, розкоментуй рядок нижче, а імпорт вище видали:
-// const bgImg = "/image_8b8f62.jpg";
+import bgImg from "../../imgs/hero-bg.png";
 
 const Hero = ({ onSearch }) => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   const handleSearch = () => {
     if (onSearch && query.trim()) {
@@ -26,27 +26,37 @@ const Hero = ({ onSearch }) => {
 
       <InfoContainer>
         <InfoText>
-          Create your personal list of favorite cities and always be aware of the weather.
+          Create your personal list of favorite cities and always be aware of
+          the weather.
         </InfoText>
-        
+
         <Divider />
 
         <DateBlock>
           October 2023
-          <span>Friday, 13<sup>th</sup></span>
+          <span>
+            Friday, 13<sup>th</sup>
+          </span>
         </DateBlock>
       </InfoContainer>
 
       <SearchWrapper>
-        <input 
-          type="text" 
-          placeholder="Search location..." 
+        <input
+          type="text"
+          placeholder="Search location..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         />
         <button onClick={handleSearch}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="black"
+            strokeWidth="2.5"
+          >
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>

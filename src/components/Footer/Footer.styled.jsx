@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledFooter = styled.footer`
   width: 100%;
-  background-color: #FFB366; 
+  background-color: #ffb366;
   padding: 30px 0;
   margin-top: 50px;
   box-sizing: border-box;
@@ -15,17 +15,16 @@ export const FooterContainer = styled.div`
   display: flex;
   align-items: flex-start;
 
-  /* Планшет та телефон (image_24b403.png) */
   @media (max-width: 1024px) {
     flex-direction: column;
-    align-items: center; /* Центруємо контент */
-    gap: 40px;          /* Відстань між блоками у стовпчику */
+    align-items: center;
+    gap: 40px;
   }
 `;
 
 export const FooterLogo = styled.div`
-  margin-right: 150px; 
-  
+  margin-right: 150px;
+
   img {
     height: 55px;
     width: auto;
@@ -33,7 +32,7 @@ export const FooterLogo = styled.div`
 
   @media (max-width: 1024px) {
     margin-right: 0;
-    align-self: flex-start; /* Лого лишається зліва, навіть якщо все інше по центру */
+    align-self: flex-start;
   }
 `;
 
@@ -48,14 +47,14 @@ export const FooterInfoBlock = styled.div`
   }
 
   @media (max-width: 1024px) {
-    margin-right: 0 !important; /* Прибираємо десктопні відступи */
-    align-items: center;        /* Центруємо текст і іконки всередині блоку */
+    margin-right: 0 !important;
+    align-items: center;
     text-align: center;
   }
 `;
 
 export const FooterTitle = styled.h4`
-  font-weight: 600; 
+  font-weight: 600;
   font-size: 18px;
   margin-bottom: 10px;
   color: #000;

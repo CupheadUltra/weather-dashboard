@@ -1,15 +1,36 @@
-import React from 'react';
-import { IoSunny, IoCloudy, IoSnow, IoHeart, IoHeartOutline } from "react-icons/io5"; 
+import React from "react";
+import {
+  IoSunny,
+  IoCloudy,
+  IoSnow,
+  IoHeart,
+  IoHeartOutline,
+} from "react-icons/io5";
 
-import refreshImg from '../../imgs/cards-refresh.png'; 
-import trashImg from '../../imgs/cards-delete.png'; 
+import refreshImg from "../../imgs/cards-refresh.png";
+import trashImg from "../../imgs/cards-delete.png";
 
-import { 
-  CardsGrid, CardWrapper, CardTop, TimeText, ForecastBtns, 
-  DateLine, MainIcon, TempValue, CardActions, ActionIcon, MoreBtn 
-} from './Cards.styled';
+import {
+  CardsGrid,
+  CardWrapper,
+  CardTop,
+  TimeText,
+  ForecastBtns,
+  DateLine,
+  MainIcon,
+  TempValue,
+  CardActions,
+  ActionIcon,
+  MoreBtn,
+} from "./Cards.styled";
 
-const SingleCard = ({ data, onRefresh, onDelete, onSeeMore, onToggleFavorite }) => {
+const SingleCard = ({
+  data,
+  onRefresh,
+  onDelete,
+  onSeeMore,
+  onToggleFavorite,
+}) => {
   const temp = Math.round(data.main?.temp);
 
   const renderWeatherIcon = () => {
@@ -33,7 +54,9 @@ const SingleCard = ({ data, onRefresh, onDelete, onSeeMore, onToggleFavorite }) 
         <button>Weekly forecast</button>
       </ForecastBtns>
 
-      <DateLine>13.10.2023 <span>|</span> Friday</DateLine>
+      <DateLine>
+        13.10.2023 <span>|</span> Friday
+      </DateLine>
 
       <MainIcon>{renderWeatherIcon()}</MainIcon>
 
@@ -43,13 +66,12 @@ const SingleCard = ({ data, onRefresh, onDelete, onSeeMore, onToggleFavorite }) 
         <ActionIcon onClick={() => onRefresh(data.id, data.name)}>
           <img src={refreshImg} alt="refresh" />
         </ActionIcon>
-        
-        {/* ЛОГІКА СЕРДЕЧКА */}
+
         <ActionIcon onClick={() => onToggleFavorite(data.id)}>
           {data.isFavorite ? (
-            <IoHeart size={28} color="#ff4d4d" /> // Червоне заповнене
+            <IoHeart size={28} color="#ff4d4d" />
           ) : (
-            <IoHeartOutline size={28} color="#333" /> // Пусте контурне
+            <IoHeartOutline size={28} color="#333" />
           )}
         </ActionIcon>
 
@@ -63,19 +85,26 @@ const SingleCard = ({ data, onRefresh, onDelete, onSeeMore, onToggleFavorite }) 
   );
 };
 
-const Cards = ({ weatherList, onRefresh, onDelete, onSeeMore, onToggleFavorite }) => {
+const Cards = ({
+  weatherList,
+  onRefresh,
+  onDelete,
+  onSeeMore,
+  onToggleFavorite,
+}) => {
   return (
     <CardsGrid>
-      {weatherList && weatherList.map((city) => (
-        <SingleCard 
-          key={city.id} 
-          data={city} 
-          onRefresh={onRefresh} 
-          onDelete={onDelete}
-          onSeeMore={onSeeMore}
-          onToggleFavorite={onToggleFavorite}
-        />
-      ))}
+      {weatherList &&
+        weatherList.map((city) => (
+          <SingleCard
+            key={city.id}
+            data={city}
+            onRefresh={onRefresh}
+            onDelete={onDelete}
+            onSeeMore={onSeeMore}
+            onToggleFavorite={onToggleFavorite}
+          />
+        ))}
     </CardsGrid>
   );
 };

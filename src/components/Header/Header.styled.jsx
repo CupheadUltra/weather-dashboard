@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -7,16 +7,16 @@ export const StyledHeader = styled.header`
   background: white;
   position: relative;
   border-bottom: 1px solid #eee;
-  font-family: 'Montserrat Alternates', sans-serif;
-  height: 70px; /* Фіксована висота для стабільності */
+  font-family: "Montserrat Alternates", sans-serif;
+  height: 70px;
 `;
 
 export const LogoContainer = styled.div`
-  margin-right: 60px; /* Відступ від лого до Who we are */
+  margin-right: 60px;
   display: flex;
   align-items: center;
-  img { 
-    height: 45px; 
+  img {
+    height: 45px;
     display: block;
   }
 `;
@@ -24,21 +24,21 @@ export const LogoContainer = styled.div`
 export const NavLinks = styled.nav`
   display: flex;
   gap: 35px;
-  
-  @media (max-width: 1024px) { 
-    display: none; 
+
+  @media (max-width: 1024px) {
+    display: none;
   }
 
-  a { 
-    text-decoration: none; 
-    color: black; 
+  a {
+    text-decoration: none;
+    color: black;
     font-weight: 500;
     font-size: 16px;
     white-space: nowrap;
     transition: color 0.2s;
-    
+
     &:hover {
-      color: #FFB366;
+      color: #ffb366;
     }
   }
 `;
@@ -47,15 +47,15 @@ export const AuthSection = styled.div`
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-left: auto; /* Притискає Sign Up та аватар вправо */
+  margin-left: auto;
 
-  @media (max-width: 1024px) { 
-    display: none; 
+  @media (max-width: 1024px) {
+    display: none;
   }
 `;
 
 export const SignUpBtn = styled.button`
-  background: #FFB366;
+  background: #ffb366;
   border: none;
   padding: 10px 25px;
   border-radius: 12px;
@@ -83,21 +83,21 @@ export const MobileMenuBtn = styled.button`
   border: none;
   font-size: 20px;
   cursor: pointer;
-  display: none; 
+  display: none;
   align-items: center;
   gap: 10px;
   font-family: inherit;
-  margin-left: auto; /* На мобілці кнопка Menu теж буде справа */
+  margin-left: auto;
 
-  @media (max-width: 1024px) { 
-    display: flex; 
+  @media (max-width: 1024px) {
+    display: flex;
   }
 `;
 
 export const ArrowIcon = styled.span`
   display: inline-block;
   transition: transform 0.3s;
-  transform: ${props => props.isOpen ? 'rotate(90deg)' : 'rotate(0deg)'};
+  transform: ${(props) => (props.isOpen ? "rotate(90deg)" : "rotate(0deg)")};
 `;
 
 export const MobileMenuPanel = styled.div`
@@ -105,12 +105,12 @@ export const MobileMenuPanel = styled.div`
   top: 100%;
   left: 0;
   width: 100%;
-  background: #E5E5E5;
-  display: ${props => (props.isOpen ? 'flex' : 'none')};
+  background: #e5e5e5;
+  display: ${(props) => (props.isOpen ? "flex" : "none")};
   justify-content: space-around;
   padding: 80px 40px;
   z-index: 1000;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 
   @media (max-width: 600px) {
     flex-direction: column;
@@ -122,7 +122,12 @@ export const MobileMenuPanel = styled.div`
     display: flex;
     flex-direction: column;
     gap: 40px;
-    a { font-size: 32px; text-decoration: none; color: black; font-weight: 500; }
+    a {
+      font-size: 32px;
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+    }
   }
 
   .profile-col {

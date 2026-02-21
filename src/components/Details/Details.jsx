@@ -1,27 +1,42 @@
-import React from 'react';
-import { 
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer 
-} from 'recharts';
+import React from "react";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
-import { 
-  WiThermometer, WiHumidity, WiBarometer, WiStrongWind 
+import {
+  WiThermometer,
+  WiHumidity,
+  WiBarometer,
+  WiStrongWind,
 } from "react-icons/wi";
 import { MdVisibility, MdTimeline } from "react-icons/md";
 
-import { 
-  DetailsSection, DetailsGrid, DetailCard, 
-  ChartContainer, ForecastList, ForecastItem 
-} from './Details.styled';
+import {
+  DetailsSection,
+  DetailsGrid,
+  DetailCard,
+  ChartContainer,
+  ForecastList,
+  ForecastItem,
+} from "./Details.styled";
 
 const Details = ({ data }) => {
   if (!data || !data.forecast) return null;
 
-  const chartData = data.forecast.slice(0, 8).map(item => ({
-    time: new Date(item.dt * 1000).toLocaleTimeString([], { hour: '2-digit' }),
+  const chartData = data.forecast.slice(0, 8).map((item) => ({
+    time: new Date(item.dt * 1000).toLocaleTimeString([], { hour: "2-digit" }),
     temp: Math.round(item.main.temp),
   }));
 
-  const dailyForecast = data.forecast.filter(item => item.dt_txt.includes("12:00:00"));
+  const dailyForecast = data.forecast.filter((item) =>
+    item.dt_txt.includes("12:00:00")
+  );
 
   return (
     <DetailsSection>
@@ -35,7 +50,8 @@ const Details = ({ data }) => {
         <DetailCard>
           <p className="label">Min / Max</p>
           <p className="value">
-            {Math.round(data.main.temp_min)}° / {Math.round(data.main.temp_max)}°
+            {Math.round(data.main.temp_min)}° / {Math.round(data.main.temp_max)}
+            °
           </p>
           <MdTimeline size={40} color="#555" />
         </DetailCard>
@@ -69,15 +85,19 @@ const Details = ({ data }) => {
         <h3>Hourly forecast</h3>
         <ResponsiveContainer width="100%" height={250}>
           <AreaChart data={chartData}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#ccc" />
+            <CartesianGrid
+              strokeDasharray="3 3"
+              vertical={false}
+              stroke="#ccc"
+            />
             <XAxis dataKey="time" axisLine={false} tickLine={false} />
             <YAxis unit="°" axisLine={false} tickLine={false} />
             <Tooltip />
-            <Area 
-              type="monotone" 
-              dataKey="temp" 
-              stroke="#ff8c00" 
-              fill="rgba(255, 140, 0, 0.2)" 
+            <Area
+              type="monotone"
+              dataKey="temp"
+              stroke="#ff8c00"
+              fill="rgba(255, 140, 0, 0.2)"
               strokeWidth={3}
             />
           </AreaChart>
@@ -89,12 +109,20 @@ const Details = ({ data }) => {
         {dailyForecast.map((day, index) => (
           <ForecastItem key={index}>
             <span className="date">
-              {new Date(day.dt * 1000).toLocaleDateString('en-US', { weekday: 'short', day: 'numeric' })}
+              {new Date(day.dt * 1000).toLocaleDateString("en-US", {
+                weekday: "short",
+                day: "numeric",
+              })}
             </span>
             <span className="icon">
-               <img src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`} alt="icon" />
+              <img
+                src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`}
+                alt="icon"
+              />
             </span>
-            <span className="temp">{Math.round(day.main.temp_max)}/{Math.round(day.main.temp_min)}°C</span>
+            <span className="temp">
+              {Math.round(day.main.temp_max)}/{Math.round(day.main.temp_min)}°C
+            </span>
             <span className="desc">{day.weather[0].description}</span>
           </ForecastItem>
         ))}

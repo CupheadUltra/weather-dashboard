@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CardsGrid = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const CardsGrid = styled.div`
   gap: 30px;
   padding: 40px 20px;
   width: 100%;
-  max-width: 1250px; /* Обмежуємо, щоб на великих екранах не розповзалося */
+  max-width: 1250px;
   margin: 0 auto;
   box-sizing: border-box;
 
@@ -19,7 +19,7 @@ export const CardsGrid = styled.div`
 `;
 
 export const CardWrapper = styled.div`
-  background: #EBEBEB;
+  background: #ebebeb;
   border-radius: 35px;
   padding: 25px;
   display: flex;
@@ -28,17 +28,13 @@ export const CardWrapper = styled.div`
   position: relative;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  /* Десктопна ширина */
-  width: 280px; 
+  width: 280px;
 
-  /* Планшет: строго 2 в ряд */
   @media (max-width: 900px) {
-    width: calc(50% - 15px); /* 50% мінус половина gap */
+    width: calc(50% - 15px);
     min-width: 280px;
   }
 
-  /* Мобілка: 1 в ряд */
   @media (max-width: 600px) {
     width: 100%;
     max-width: 320px;
@@ -58,7 +54,7 @@ export const CardTop = styled.div`
   font-size: 15px;
   color: #333;
   margin-bottom: 5px;
-  
+
   span:last-child {
     color: #666;
   }
@@ -77,7 +73,7 @@ export const ForecastBtns = styled.div`
   margin-bottom: 15px;
 
   button {
-    background: #FFB366;
+    background: #ffb366;
     border: none;
     padding: 6px 14px;
     border-radius: 12px;
@@ -100,23 +96,23 @@ export const DateLine = styled.div`
   color: #555;
   display: flex;
   align-items: center;
-  
-  span { 
-    margin: 0 8px; 
-    color: #ccc; 
+
+  span {
+    margin: 0 8px;
+    color: #ccc;
     font-weight: 300;
   }
 `;
 
 export const MainIcon = styled.div`
   margin: 15px 0;
-  height: 120px; /* Фіксуємо висоту, щоб температура не "стрибала" */
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  svg { 
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+  svg {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
   }
 `;
 
@@ -148,20 +144,22 @@ export const ActionIcon = styled.button`
   border-radius: 50%;
   transition: background 0.2s;
 
-  img { 
-    width: 22px; 
+  img {
+    width: 22px;
     height: 22px;
     object-fit: contain;
   }
 
   &:hover {
     background: rgba(0, 0, 0, 0.05);
-    img { transform: scale(1.1); }
+    img {
+      transform: scale(1.1);
+    }
   }
 `;
 
 export const MoreBtn = styled.button`
-  background: #FFB366;
+  background: #ffb366;
   border: none;
   padding: 8px 20px;
   border-radius: 12px;
@@ -170,7 +168,7 @@ export const MoreBtn = styled.button`
   font-family: inherit;
   cursor: pointer;
   transition: all 0.2s;
-  
+
   &:hover {
     background: #ffa040;
     box-shadow: 0 4px 8px rgba(255, 179, 102, 0.3);

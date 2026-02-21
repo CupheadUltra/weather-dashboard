@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -6,27 +6,26 @@ export const ModalOverlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.6); /* Затемнення фону */
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
-  align-items: center;      /* Центрування по вертикалі */
-  justify-content: center;   /* Центрування по горизонталі */
-  z-index: 9999;            /* Максимальний пріоритет */
-  backdrop-filter: blur(3px); /* Легке розмиття заднього плану */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(3px);
 `;
 
 export const FormContainer = styled.form`
   background: white;
   padding: 50px 40px;
-  border-radius: 60px;      /* Ті самі закруглені кути з макета */
+  border-radius: 60px;
   width: 100%;
-  max-width: 450px;         /* Обмежуємо ширину на комп'ютері */
+  max-width: 450px;
   display: flex;
   flex-direction: column;
   position: relative;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: "Montserrat Alternates", sans-serif;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 
-  /* Адаптація для мобілки */
   @media (max-width: 480px) {
     width: 90%;
     padding: 30px 20px;
@@ -59,7 +58,7 @@ export const InputGroup = styled.div`
     padding: 18px 25px;
     border-radius: 20px;
     border: none;
-    background-color: #E5E5E5; /* Сірий фон інпутів з макета */
+    background-color: #e5e5e5;
     font-size: 16px;
     font-family: inherit;
     outline: none;
@@ -72,7 +71,7 @@ export const InputGroup = styled.div`
 `;
 
 export const SubmitButton = styled.button`
-  background-color: #FFB366; /* Твій помаранчевий */
+  background-color: #ffb366;
   border: none;
   padding: 14px 45px;
   border-radius: 20px;
@@ -96,7 +95,7 @@ export const SwitchText = styled.p`
   font-size: 14px;
 
   span {
-    color: #FFB366;
+    color: #ffb366;
     text-decoration: underline;
     cursor: pointer;
     font-weight: 600;

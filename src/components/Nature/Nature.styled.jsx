@@ -1,11 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const NatureSection = styled.section`
   padding: 40px 0;
   max-width: 1160px;
   margin: 0 auto;
 
-  /* Ховаємо на телефонах та ПЛАНШЕТАХ (до 1024px) */
   @media (max-width: 1024px) {
     display: none;
   }
@@ -28,17 +27,17 @@ export const SwiperWrapper = styled.div`
   }
 
   .swiper-slide {
-    width: 450px; 
+    width: 450px;
     height: 280px;
     transition: all 0.5s ease-in-out;
-    filter: brightness(0.4); 
+    filter: brightness(0.4);
     transform: scale(0.85);
     z-index: 1;
   }
 
   .swiper-slide-active {
     filter: brightness(1);
-    transform: scale(1.1); 
+    transform: scale(1.1);
     z-index: 10 !important;
     position: relative;
   }
@@ -48,6 +47,6 @@ export const SwiperWrapper = styled.div`
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
   }
 `;

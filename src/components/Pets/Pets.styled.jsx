@@ -1,10 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const PetsSection = styled.section`
   padding: 60px 0;
   font-family: "Montserrat Alternates", sans-serif;
 
-  /* Ховаємо на телефонах та ПЛАНШЕТАХ (до 1024px) */
   @media (max-width: 1024px) {
     display: none;
   }
@@ -19,7 +18,7 @@ export const PetsTitle = styled.h2`
 
 export const PetsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
+  grid-template-columns: repeat(4, 1fr);
   gap: 25px;
   margin-bottom: 40px;
 `;
@@ -46,14 +45,14 @@ export const PetDescription = styled.p`
 `;
 
 export const SeeMoreButton = styled.button`
-  background-color: #FFB366;
+  background-color: #ffb366;
   border: none;
   padding: 12px 35px;
   border-radius: 12px;
   font-family: inherit;
   font-weight: 600;
   cursor: pointer;
-  
+
   &:hover {
     background-color: #ffa040;
   }

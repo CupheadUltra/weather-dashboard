@@ -1,24 +1,22 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const DetailsSection = styled.section`
   background-color: #f2f2f2;
-  padding: 20px 15px; /* Менші падінги для мобілки */
+  padding: 20px 15px;
   border-radius: 24px;
   margin: 10px 0;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: "Montserrat Alternates", sans-serif;
 `;
 
 export const DetailsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
-  
-  /* Планшет: 2 в ряд */
+
   @media (max-width: 900px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Мобілка (image_242215.png): СТРОГО 1 в ряд */
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -47,7 +45,8 @@ export const DetailCard = styled.div`
     color: #333;
   }
 
-  svg, img {
+  svg,
+  img {
     margin-top: auto;
   }
 `;
@@ -57,17 +56,16 @@ export const ChartContainer = styled.div`
   padding: 15px;
   border-radius: 20px;
   margin-top: 20px;
-  
-  h3 { 
-    margin-bottom: 15px; 
-    font-size: 16px; 
-    color: #333; 
+
+  h3 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
     text-align: center;
   }
 
-  /* Для графіку на мобілці (image_24225a.png) */
   .recharts-responsive-container {
-    margin-left: -10px; /* Трохи розширюємо графік */
+    margin-left: -10px;
   }
 `;
 
@@ -77,20 +75,18 @@ export const ForecastList = styled.div`
   border-radius: 20px;
   margin-top: 20px;
 
-  h3 { 
-    margin-bottom: 15px; 
-    font-size: 16px; 
-    color: #333; 
+  h3 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
     text-align: center;
   }
 
-  /* Контейнер для карток тижневого прогнозу на мобілці (image_242279.png) */
   display: flex;
   flex-direction: column;
   gap: 10px;
 
   @media (max-width: 480px) {
-    /* Якщо хочеш як на скріні 242279 - дві маленькі картки в ряд або одна велика */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
@@ -98,7 +94,7 @@ export const ForecastList = styled.div`
 
 export const ForecastItem = styled.div`
   display: flex;
-  flex-direction: column; /* Вертикальний вигляд для мобільної картки */
+  flex-direction: column;
   align-items: center;
   padding: 15px;
   background: #d9d9d9;
@@ -106,31 +102,36 @@ export const ForecastItem = styled.div`
   font-size: 14px;
   text-align: center;
 
-  .date { 
-    font-weight: 500; 
+  .date {
+    font-weight: 500;
     margin-bottom: 10px;
   }
 
-  .icon { 
+  .icon {
     margin: 10px 0;
-    img { width: 40px; } 
+    img {
+      width: 40px;
+    }
   }
 
-  .temp { 
-    font-weight: 700; 
+  .temp {
+    font-weight: 700;
     font-size: 15px;
     margin-bottom: 5px;
   }
 
-  .desc { 
+  .desc {
     font-size: 12px;
-    color: #555; 
+    color: #555;
   }
 
-  /* На десктопі повертаємо в рядок */
   @media (min-width: 600px) {
     flex-direction: row;
     justify-content: space-between;
-    .date, .temp, .desc { margin-bottom: 0; }
+    .date,
+    .temp,
+    .desc {
+      margin-bottom: 0;
+    }
   }
 `;

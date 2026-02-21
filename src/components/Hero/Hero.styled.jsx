@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HeroSection = styled.section`
   display: flex;
@@ -6,9 +6,8 @@ export const HeroSection = styled.section`
   align-items: center;
   justify-content: flex-start;
   padding: 80px 20px;
-  /* Використовуємо пропс для фону. Якщо картинка не провантажиться, буде сірий колір */
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-              url(${props => props.$bg}) no-repeat center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(${(props) => props.$bg}) no-repeat center center;
   background-size: cover;
   min-height: 100vh;
   width: 100%;
@@ -22,7 +21,9 @@ export const Title = styled.h1`
   font-weight: 600;
   margin-bottom: 50px;
   text-align: center;
-  @media (min-width: 1200px) { font-size: 48px; }
+  @media (min-width: 1200px) {
+    font-size: 48px;
+  }
 `;
 
 export const InfoContainer = styled.div`
@@ -41,7 +42,9 @@ export const InfoText = styled.p`
   line-height: 1.4;
   text-align: right;
   margin: 0;
-  @media (min-width: 1200px) { font-size: 20px; }
+  @media (min-width: 1200px) {
+    font-size: 20px;
+  }
 `;
 
 export const Divider = styled.div`
@@ -61,7 +64,12 @@ export const DateBlock = styled.div`
     font-weight: 700;
     margin-top: 5px;
   }
-  @media (min-width: 1200px) { font-size: 20px; span { font-size: 24px; } }
+  @media (min-width: 1200px) {
+    font-size: 20px;
+    span {
+      font-size: 24px;
+    }
+  }
 `;
 
 export const SearchWrapper = styled.div`
@@ -69,7 +77,7 @@ export const SearchWrapper = styled.div`
   width: 100%;
   max-width: 500px;
   height: 50px;
-  
+
   input {
     flex: 1;
     padding: 0 20px;
@@ -90,6 +98,8 @@ export const SearchWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    &:hover { background-color: #e69a4d; }
+    &:hover {
+      background-color: #e69a4d;
+    }
   }
 `;

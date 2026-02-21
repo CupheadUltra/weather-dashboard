@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
-import { 
-  StyledHeader, LogoContainer, NavLinks, AuthSection, 
-  SignUpBtn, ProfileIcon, LogoutBtn, UserName,
-  MobileMenuBtn, MobileMenuPanel, ArrowIcon 
-} from './Header.styled';
+import React, { useState } from "react";
+import {
+  StyledHeader,
+  LogoContainer,
+  NavLinks,
+  AuthSection,
+  SignUpBtn,
+  ProfileIcon,
+  LogoutBtn,
+  UserName,
+  MobileMenuBtn,
+  MobileMenuPanel,
+  ArrowIcon,
+} from "./Header.styled";
 
-import logoImg from '../../imgs/logoForecast.svg'; 
-import userIcon from '../../imgs/userlogin.png'; 
+import logoImg from "../../imgs/logoForecast.svg";
+import userIcon from "../../imgs/userlogin.png";
 
 const Header = ({ user, onOpenAuth, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,19 +28,16 @@ const Header = ({ user, onOpenAuth, onLogout }) => {
         <img src={logoImg} alt="logo" />
       </LogoContainer>
 
-      {/* Лінки для ПК (ховаюся на < 900px) */}
       <NavLinks>
         <a href="#who">Who we are</a>
         <a href="#contacts">Contacts</a>
         <a href="#menu">Menu</a>
       </NavLinks>
 
-      {/* Кнопка "Menu >", яка зникає на ПК */}
       <MobileMenuBtn onClick={toggleMenu}>
         Menu <ArrowIcon isOpen={isMenuOpen}>❯</ArrowIcon>
       </MobileMenuBtn>
 
-      {/* Секція логіну для ПК (ховаюся на < 900px) */}
       <AuthSection>
         {user ? (
           <>
@@ -45,22 +50,32 @@ const Header = ({ user, onOpenAuth, onLogout }) => {
         <ProfileIcon src={userIcon} alt="profile" />
       </AuthSection>
 
-      {/* Випадаюча панель (меню) */}
       <MobileMenuPanel isOpen={isMenuOpen}>
         <div className="links-col">
-          <a href="#who" onClick={closeMenu}>Who we are</a>
-          <a href="#contacts" onClick={closeMenu}>Contacts</a>
-          <a href="#menu" onClick={closeMenu}>Menu</a>
+          <a href="#who" onClick={closeMenu}>
+            Who we are
+          </a>
+          <a href="#contacts" onClick={closeMenu}>
+            Contacts
+          </a>
+          <a href="#menu" onClick={closeMenu}>
+            Menu
+          </a>
         </div>
 
         <div className="profile-col">
-          <ProfileIcon 
-            src={userIcon} 
-            alt="profile" 
-            style={{ width: '120px', height: '120px' }} 
+          <ProfileIcon
+            src={userIcon}
+            alt="profile"
+            style={{ width: "120px", height: "120px" }}
           />
           {!user && (
-            <SignUpBtn onClick={() => { onOpenAuth(); closeMenu(); }}>
+            <SignUpBtn
+              onClick={() => {
+                onOpenAuth();
+                closeMenu();
+              }}
+            >
               Sign Up
             </SignUpBtn>
           )}
