@@ -6,15 +6,36 @@ export const CardsGrid = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 30px;
-  padding: 40px 20px;
+  /* Якщо порожньо — падінг мінімальний, щоб не було дірки */
+  padding: ${(props) => (props.$isEmpty ? "20px 0" : "40px 20px")};
   width: 100%;
   max-width: 1250px;
   margin: 0 auto;
   box-sizing: border-box;
+  transition: padding 0.3s ease;
 
   @media (max-width: 1024px) {
     gap: 20px;
-    padding: 20px 10px;
+    padding: ${(props) => (props.$isEmpty ? "10px 0" : "20px 10px")};
+  }
+`;
+
+export const EmptyState = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  color: #aaa;
+  font-family: inherit;
+
+  p {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    max-width: 300px;
+    line-height: 1.5;
   }
 `;
 

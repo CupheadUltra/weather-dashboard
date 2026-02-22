@@ -5,6 +5,7 @@ import {
   IoSnow,
   IoHeart,
   IoHeartOutline,
+  IoSearchOutline,
 } from "react-icons/io5";
 
 import refreshImg from "../../imgs/cards-refresh.png";
@@ -22,6 +23,7 @@ import {
   CardActions,
   ActionIcon,
   MoreBtn,
+  EmptyState,
 } from "./Cards.styled";
 
 const SingleCard = ({
@@ -98,9 +100,16 @@ const Cards = ({
   onSeeMore,
   onToggleFavorite,
 }) => {
+  const isEmpty = !weatherList || weatherList.length === 0;
+
   return (
-    <CardsGrid>
-      {weatherList &&
+    <CardsGrid $isEmpty={isEmpty}>
+      {isEmpty ? (
+        <EmptyState>
+          <IoSearchOutline size={50} color="#ddd" />
+          <p>No cities added yet. Search for a city to see the weather!</p>
+        </EmptyState>
+      ) : (
         weatherList.map((city) => (
           <SingleCard
             key={city.id}
@@ -110,7 +119,8 @@ const Cards = ({
             onSeeMore={onSeeMore}
             onToggleFavorite={onToggleFavorite}
           />
-        ))}
+        ))
+      )}
     </CardsGrid>
   );
 };

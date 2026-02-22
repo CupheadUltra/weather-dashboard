@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
 export const StyledFooter = styled.footer`
+  /* Використовуємо 100% замість 100vw, щоб не було скролу */
   width: 100%;
   background-color: #ffb366;
   padding: 30px 0;
   margin-top: 50px;
   box-sizing: border-box;
+
+  /* Якщо футер все одно всередині контейнера, цей хак розтягне його без скролу */
+  box-shadow: 0 0 0 100vmax #ffb366;
+  clip-path: inset(0 -100vmax);
 `;
 
 export const FooterContainer = styled.div`
@@ -14,6 +19,7 @@ export const FooterContainer = styled.div`
   padding: 0 20px;
   display: flex;
   align-items: flex-start;
+  box-sizing: border-box;
 
   @media (max-width: 1024px) {
     flex-direction: column;
@@ -75,6 +81,10 @@ export const SocialWrapper = styled.div`
 
 export const SocialIcon = styled.a`
   transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   &:hover {
     transform: scale(1.1);
   }

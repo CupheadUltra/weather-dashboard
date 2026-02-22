@@ -145,6 +145,7 @@ function App() {
   };
 
   return (
+    <>
     <div className="container">
       <Header user={user} onOpenAuth={() => setIsModalOpen(true)} onLogout={handleLogout} />
       <main>
@@ -160,7 +161,6 @@ function App() {
         <Pets />
         <Nature />
       </main>
-      <Footer />
       <AuthModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -168,6 +168,8 @@ function App() {
         onLogin={handleLogin}
       />
     </div>
+     <Footer />
+    </>
   );
 }
 
