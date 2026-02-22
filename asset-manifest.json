@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/weather-dashboard/static/css/main.e138297a.css",
+    "main.js": "/weather-dashboard/static/js/main.2e635dca.js",
+    "static/media/hero-bg.png": "/weather-dashboard/static/media/hero-bg.c58733bb3dd3891ead13.png",
+    "static/media/nature1.png": "/weather-dashboard/static/media/nature1.63d4ed1c62d5cf205974.png",
+    "static/media/pet3.png": "/weather-dashboard/static/media/pet3.cf6f393ff00972583e37.png",
+    "static/media/pet2.png": "/weather-dashboard/static/media/pet2.96c6c982b853a33cb72c.png",
+    "static/media/pet4.png": "/weather-dashboard/static/media/pet4.e708c6b6cb2a48ea3476.png",
+    "static/media/nature5.png": "/weather-dashboard/static/media/nature5.4a7bd757b01d84c6a367.png",
+    "static/media/nature4.png": "/weather-dashboard/static/media/nature4.fff7105df25533d7e1ca.png",
+    "static/media/nature2.png": "/weather-dashboard/static/media/nature2.fd051538827737be8a07.png",
+    "static/media/pet1.png": "/weather-dashboard/static/media/pet1.3062b2015e1310caca31.png",
+    "static/media/nature3.png": "/weather-dashboard/static/media/nature3.06ddf66c86380e90b516.png",
+    "static/media/logoForecast.svg": "/weather-dashboard/static/media/logoForecast.5bb312822fb1dc1245ae3535281599e9.svg",
+    "index.html": "/weather-dashboard/index.html",
+    "main.e138297a.css.map": "/weather-dashboard/static/css/main.e138297a.css.map",
+    "main.2e635dca.js.map": "/weather-dashboard/static/js/main.2e635dca.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e138297a.css",
+    "static/js/main.2e635dca.js"
+  ]
+}
