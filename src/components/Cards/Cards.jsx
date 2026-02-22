@@ -33,6 +33,12 @@ const SingleCard = ({
 }) => {
   const temp = Math.round(data.main?.temp);
 
+  const now = new Date();
+  const numericDate = now.toLocaleDateString("uk-UA").replace(/\//g, ".");
+  const weekday = now.toLocaleDateString("en-US", { weekday: "long" });
+
+  const displayTime = data.addedAt || "00:00";
+
   const renderWeatherIcon = () => {
     const size = 110;
     if (temp >= 25) return <IoSunny size={size} color="#FFB366" />;
@@ -47,7 +53,7 @@ const SingleCard = ({
         <span>{data.sys?.country}</span>
       </CardTop>
 
-      <TimeText>14:00</TimeText>
+      <TimeText>{displayTime}</TimeText>
 
       <ForecastBtns>
         <button>Hourly forecast</button>
@@ -55,7 +61,7 @@ const SingleCard = ({
       </ForecastBtns>
 
       <DateLine>
-        13.10.2023 <span>|</span> Friday
+        {numericDate} <span>|</span> {weekday}
       </DateLine>
 
       <MainIcon>{renderWeatherIcon()}</MainIcon>

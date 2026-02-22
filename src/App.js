@@ -10,34 +10,28 @@ import AuthModal from "./components/Auth/AuthModal";
 import "./index.css";
 
 function App() {
-  // Стан для поточного юзера
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem("weatherUser");
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  // Стан для міст (спочатку порожній, підтягнеться в useEffect)
   const [weatherList, setWeatherList] = useState([]);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeDetails, setActiveDetails] = useState(null);
   const API_KEY = "b75aa9e8660ddfbe229608aae9f70ff1";
 
-  // 1. ЗАВАНТАЖЕННЯ: Коли юзер входить або виходить
   useEffect(() => {
     if (user) {
       const saved = localStorage.getItem(`weatherCities_${user.email}`);
       setWeatherList(saved ? JSON.parse(saved) : []);
     } else {
-      setWeatherList([]); // Очищуємо екран для гостей
+      setWeatherList([]);
     }
   }, [user]);
 
-  // 2. ЗБЕРЕЖЕННЯ: Тільки якщо юзер авторизований
   useEffect(() => {
     if (user) {
-      const favoritesOnly = weatherList.filter((city) => city.isFavorite === true);
-      localStorage.setItem(`weatherCities_${user.email}`, JSON.stringify(favoritesOnly));
+      localStorage.setItem(`weatherCities_${user.email}`, JSON.stringify(weatherList));
     }
   }, [weatherList, user]);
 
@@ -50,13 +44,42 @@ function App() {
       if (response.ok) {
         setWeatherList((prev) => {
           if (prev.find((item) => item.id === data.id)) return prev;
-          return [{ ...data, isFavorite: false }, ...prev];
+
+          const creationTime = new Date().toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+
+          return [{ ...data, isFavorite: false, addedAt: creationTime }, ...prev];
         });
       } else {
         alert("City not found!");
       }
     } catch (error) {
       console.error("Search error:", error);
+    }
+  };
+
+  const refreshWeather = async (id, cityName) => {
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`
+      );
+      const newData = await response.json();
+      if (response.ok) {
+        const updateTime = new Date().toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        setWeatherList((prev) =>
+          prev.map((c) =>
+            c.id === id ? { ...newData, isFavorite: c.isFavorite, addedAt: updateTime } : c
+          )
+        );
+      }
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -75,15 +98,12 @@ function App() {
 
   const handleSignUp = (userData) => {
     const allUsers = JSON.parse(localStorage.getItem("weatherUsersList")) || [];
-    
     if (allUsers.find(u => u.email === userData.email)) {
       alert("This email is already registered!");
       return;
     }
-
     const updatedUsersList = [...allUsers, userData];
     localStorage.setItem("weatherUsersList", JSON.stringify(updatedUsersList));
-    
     localStorage.setItem("weatherUser", JSON.stringify(userData));
     setUser(userData);
     setIsModalOpen(false);
@@ -91,11 +111,9 @@ function App() {
 
   const handleLogin = (loginData) => {
     const allUsers = JSON.parse(localStorage.getItem("weatherUsersList")) || [];
-    
     const foundUser = allUsers.find(
       (u) => u.email === loginData.email && u.password === loginData.password
     );
-
     if (foundUser) {
       localStorage.setItem("weatherUser", JSON.stringify(foundUser));
       setUser(foundUser);
@@ -110,24 +128,6 @@ function App() {
   const deleteCity = (id) => {
     setWeatherList((prev) => prev.filter((city) => city.id !== id));
     if (activeDetails && activeDetails.id === id) setActiveDetails(null);
-  };
-
-  const refreshWeather = async (id, cityName) => {
-    try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`
-      );
-      const newData = await response.json();
-      if (response.ok) {
-        setWeatherList((prev) =>
-          prev.map((c) =>
-            c.id === id ? { ...newData, isFavorite: c.isFavorite } : c
-          )
-        );
-      }
-    } catch (e) {
-      console.error(e);
-    }
   };
 
   const handleSeeMore = async (cityData) => {
@@ -146,15 +146,9 @@ function App() {
 
   return (
     <div className="container">
-      <Header
-        user={user}
-        onOpenAuth={() => setIsModalOpen(true)}
-        onLogout={handleLogout}
-      />
-
+      <Header user={user} onOpenAuth={() => setIsModalOpen(true)} onLogout={handleLogout} />
       <main>
         <Hero onSearch={handleSearch} />
-
         <Cards
           weatherList={weatherList}
           onDelete={deleteCity}
@@ -162,14 +156,11 @@ function App() {
           onSeeMore={handleSeeMore}
           onToggleFavorite={toggleFavorite}
         />
-
         {activeDetails && <Details data={activeDetails} />}
         <Pets />
         <Nature />
       </main>
-
       <Footer />
-
       <AuthModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
