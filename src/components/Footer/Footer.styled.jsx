@@ -117,32 +117,29 @@ export const CharactersContainer = styled.div`
     margin-top: 20px;
   }
 `;
-
 export const CharacterImg = styled.img`
   height: 120px;
   width: auto;
   display: block;
   object-fit: contain;
   
-  /* Плавність переходу для руху та появи гіфки */
-  transition: transform 0.3s ease-in-out, opacity 0.1s ease;
+  /* Жодних анімацій руху — зміна має бути миттєвою */
+  transition: none; 
 
-  /* Комбінуємо віддзеркалення та рух */
   transform: ${(props) => {
-    let styles = "";
+    let t = "";
     
-    // Якщо треба віддзеркалити
+    // 1. Віддзеркалюємо Ланіно
     if (props.$mirrored) {
-      styles += "scaleX(-1) ";
+      t += "scaleX(-1) ";
     }
 
-    // Якщо анімація активна — соваємо Ланіно в бік Ельніни.
-    // Оскільки він віддзеркалений, позитивне значення посуне його вправо (до неї).
-    // Підбери 30px або більше/менше, щоб палички зійшлися ідеально.
+    // 2. Якщо натиснуто (йде гіфка) — миттєво зсуваємо його ближче
+    // Від'ємне значення (наприклад, -40px) посуне його вправо, бо він віддзеркалений
     if (props.$mirrored && props.$isMoving) {
-      styles += "translateX(-40px)"; 
+      t += "translateX(-40px)"; 
     }
 
-    return styles || "none";
+    return t || "none";
   }};
 `;

@@ -73,7 +73,7 @@ const Footer = () => {
             src={isMoving ? char1move : char1}
             alt="Lanino"
             $mirrored
-            $isMoving={isMoving} // Передаємо стан анімації
+            $isMoving={isMoving}
           />
           <CharacterImg src={isMoving ? char2move : char2} alt="Elnina" />
         </CharactersContainer>
