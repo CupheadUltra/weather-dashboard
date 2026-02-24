@@ -51,7 +51,7 @@
 - **Перемикач тем** - Підтримка Світлого та Темного режимів для комфортного перегляду в будь-який час доби.
 <div align="center">
 <p>Темна тема</p>
-<img src="./src/imgs/readme/dark.png" alt="Dark Version" width="400">
+<img src="./src/imgs/readme/dark.png" alt="Dark Version" width="700">
 </div>
 
 <div>
