@@ -45,13 +45,13 @@
 
 <div align="center">
   <p>Телефон: </p>
-<img src="img/img-readme/phone.png" alt="Mobile Version" width="300">
+<img src="./src/imgs/readme/phone.png" alt="Mobile Version" width="300">
 </div>
 
 - **Перемикач тем** - Підтримка Світлого та Темного режимів для комфортного перегляду в будь-який час доби.
 <div align="center">
 <p>Темна тема</p>
-<img src="img/img-readme/dark.png" alt="Dark Version" width="400">
+<img src="./src/imgs/readme/dark.png" alt="Dark Version" width="400">
 </div>
 
 <div>
