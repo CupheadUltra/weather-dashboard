@@ -1,137 +1,113 @@
 import styled from "styled-components";
 
 export const DetailsSection = styled.section`
-  background-color: #f2f2f2;
-  padding: 20px 15px;
-  border-radius: 24px;
-  margin: 10px 0;
-  font-family: "Montserrat Alternates", sans-serif;
+  padding: 40px;
+  border-radius: 35px;
+  margin-top: 40px;
+  /* Адаптація фону під тему */
+  background: ${(props) => (props.theme.body === "#121212" ? "#1e1e1e" : "#fff")};
+  color: ${(props) => props.theme.text};
+  border: 1px solid ${(props) => props.theme.headerBorder};
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
 `;
 
 export const DetailsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
 
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    gap: 10px;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
 export const DetailCard = styled.div`
-  background-color: #e6e6e6;
+  background: ${(props) => (props.theme.body === "#121212" ? "#2a2a2a" : "#f5f5f5")};
   padding: 20px;
-  border-radius: 16px;
+  border-radius: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 8px;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 
   .label {
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 8px;
+    font-size: 14px;
+    opacity: 0.7;
+    margin: 0;
   }
 
   .value {
     font-size: 20px;
     font-weight: 700;
-    margin-bottom: 12px;
-    color: #333;
-  }
-
-  svg,
-  img {
-    margin-top: auto;
+    margin: 0;
   }
 `;
 
 export const ChartContainer = styled.div`
-  background: #e6e6e6;
-  padding: 15px;
-  border-radius: 20px;
-  margin-top: 20px;
+  margin-top: 30px;
+  padding: 20px;
+  background: ${(props) => (props.theme.body === "#121212" ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)")};
+  border-radius: 25px;
 
   h3 {
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #333;
-    text-align: center;
-  }
-
-  .recharts-responsive-container {
-    margin-left: -10px;
+    margin-bottom: 20px;
+    font-size: 18px;
   }
 `;
 
 export const ForecastList = styled.div`
-  background: #e6e6e6;
-  padding: 15px;
-  border-radius: 20px;
-  margin-top: 20px;
-
+  margin-top: 40px;
+  
   h3 {
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #333;
-    text-align: center;
-  }
-
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  @media (max-width: 480px) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 20px;
+    font-size: 18px;
   }
 `;
 
 export const ForecastItem = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 15px;
-  background: #d9d9d9;
-  border-radius: 15px;
-  font-size: 14px;
-  text-align: center;
+  justify-content: space-between;
+  padding: 15px 25px;
+  margin-bottom: 10px;
+  background: ${(props) => (props.theme.body === "#121212" ? "#2a2a2a" : "#f9f9f9")};
+  border-radius: 20px;
+  transition: background 0.2s;
 
-  .date {
-    font-weight: 500;
-    margin-bottom: 10px;
+  &:hover {
+    background: ${(props) => (props.theme.body === "#121212" ? "#333" : "#f0f0f0")};
   }
 
-  .icon {
-    margin: 10px 0;
-    img {
-      width: 40px;
-    }
+  .date {
+    font-weight: 600;
+    width: 100px;
   }
 
   .temp {
+    font-size: 18px;
     font-weight: 700;
-    font-size: 15px;
-    margin-bottom: 5px;
+    color: #ffb366;
   }
 
   .desc {
-    font-size: 12px;
-    color: #555;
+    text-transform: capitalize;
+    font-size: 14px;
+    width: 120px;
+    text-align: right;
   }
 
-  @media (min-width: 600px) {
-    flex-direction: row;
-    justify-content: space-between;
-    .date,
-    .temp,
-    .desc {
-      margin-bottom: 0;
-    }
+  @media (max-width: 500px) {
+    padding: 10px 15px;
+    .date { width: 70px; font-size: 13px; }
+    .desc { display: none; } /* Ховаємо опис на маленьких екранах */
   }
 `;

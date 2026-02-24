@@ -6,7 +6,6 @@ export const CardsGrid = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 30px;
-  /* Якщо порожньо — падінг мінімальний, щоб не було дірки */
   padding: ${(props) => (props.$isEmpty ? "20px 0" : "40px 20px")};
   width: 100%;
   max-width: 1250px;
@@ -40,7 +39,8 @@ export const EmptyState = styled.div`
 `;
 
 export const CardWrapper = styled.div`
-  background: #ebebeb;
+  /* Адаптація під тему: у темній темі робимо темнішим */
+  background: ${(props) => (props.theme.body === "#121212" ? "#1e1e1e" : "#ebebeb")};
   border-radius: 35px;
   padding: 25px;
   display: flex;
@@ -50,6 +50,7 @@ export const CardWrapper = styled.div`
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 280px;
+  border: 1px solid ${(props) => props.theme.headerBorder};
 
   @media (max-width: 900px) {
     width: calc(50% - 15px);
@@ -73,11 +74,11 @@ export const CardTop = styled.div`
   width: 100%;
   font-weight: 500;
   font-size: 15px;
-  color: #333;
+  color: ${(props) => props.theme.text};
   margin-bottom: 5px;
 
   span:last-child {
-    color: #666;
+    opacity: 0.7;
   }
 `;
 
@@ -85,7 +86,7 @@ export const TimeText = styled.h2`
   font-size: 32px;
   margin: 10px 0;
   font-weight: 500;
-  color: #222;
+  color: ${(props) => props.theme.text};
 `;
 
 export const ForecastBtns = styled.div`
@@ -101,6 +102,7 @@ export const ForecastBtns = styled.div`
     font-size: 11px;
     font-weight: 600;
     font-family: inherit;
+    color: #fff;
     cursor: pointer;
     white-space: nowrap;
     transition: background 0.2s;
@@ -114,7 +116,8 @@ export const ForecastBtns = styled.div`
 export const DateLine = styled.div`
   font-size: 14px;
   margin-bottom: 15px;
-  color: #555;
+  color: ${(props) => props.theme.text};
+  opacity: 0.8;
   display: flex;
   align-items: center;
 
@@ -131,7 +134,6 @@ export const MainIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   svg {
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
   }
@@ -141,7 +143,7 @@ export const TempValue = styled.div`
   font-size: 46px;
   font-weight: 600;
   margin-bottom: 15px;
-  color: #222;
+  color: ${(props) => props.theme.text};
 `;
 
 export const CardActions = styled.div`
@@ -151,7 +153,7 @@ export const CardActions = styled.div`
   width: 100%;
   margin-top: 10px;
   padding-top: 10px;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid ${(props) => props.theme.headerBorder};
 `;
 
 export const ActionIcon = styled.button`
@@ -164,18 +166,18 @@ export const ActionIcon = styled.button`
   justify-content: center;
   border-radius: 50%;
   transition: background 0.2s;
+  color: ${(props) => props.theme.text};
 
   img {
     width: 22px;
     height: 22px;
     object-fit: contain;
+    /* Інвертуємо іконки-картинки для темної теми */
+    filter: ${(props) => (props.theme.body === "#121212" ? "invert(1)" : "none")};
   }
 
   &:hover {
     background: rgba(0, 0, 0, 0.05);
-    img {
-      transform: scale(1.1);
-    }
   }
 `;
 
@@ -186,6 +188,7 @@ export const MoreBtn = styled.button`
   border-radius: 12px;
   font-weight: 600;
   font-size: 13px;
+  color: #fff;
   font-family: inherit;
   cursor: pointer;
   transition: all 0.2s;

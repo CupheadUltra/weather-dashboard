@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { lightTheme, darkTheme } from "./components/theme";
 
@@ -16,46 +16,76 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${(props) => props.theme.body};
     color: ${(props) => props.theme.text};
-    transition: background-color 0.3s ease, color 0.3s ease;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+    transition: background-color 0.3s ease;
+    margin: 0; padding: 0; overflow-x: hidden;
   }
 `;
+// ... (всі твої імпорти зверху залишаються без змін)
 
 function App() {
-  const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem("weatherUser");
-    return savedUser ? JSON.parse(savedUser) : null;
-  });
-
+  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem("weatherUser")));
   const [weatherList, setWeatherList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeDetails, setActiveDetails] = useState(null);
   const [theme, setTheme] = useState(() => localStorage.getItem("appTheme") || "light");
-
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  const isInitialMount = useRef(true);
+  const detailsRef = useRef(null);
   const API_KEY = "b75aa9e8660ddfbe229608aae9f70ff1";
 
-  const toggleTheme = () => {
-    const nextTheme = theme === "light" ? "dark" : "light";
-    setTheme(nextTheme);
-    localStorage.setItem("appTheme", nextTheme);
-  };
+  // 1. Завантаження при вході (фільтруємо тільки улюблені з бази)
+  useEffect(() => {
+    if (user && user.email) {
+      const saved = localStorage.getItem(`weatherCities_${user.email}`);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // При завантаженні залишаємо тільки збережені (лайкнуті)
+        setWeatherList(parsed.filter(city => city.isFavorite));
+      }
+    } else {
+      setWeatherList([]);
+    }
+    isInitialMount.current = false;
+    setIsLoaded(true);
+  }, [user]);
 
-  // --- ОСЬ ЦЯ ФУНКЦІЯ МАЄ БУТИ ТУТ ---
+  // 2. Збереження при зміні списку
+  useEffect(() => {
+    if (!isInitialMount.current && user && user.email) {
+      localStorage.setItem(`weatherCities_${user.email}`, JSON.stringify(weatherList));
+    }
+  }, [weatherList, user]);
+
   const handleSearch = async (cityName) => {
-    if (!cityName) return;
+    if (!cityName || !user) {
+      alert(user ? "Please enter city name" : "Please log in to add cities!");
+      return;
+    }
+    
     try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`
-      );
-      const data = await response.json();
-      if (response.ok) {
-        setWeatherList((prev) => {
-          if (prev.find((item) => item.id === data.id)) return prev;
-          const time = new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
-          return [{ ...data, isFavorite: false, addedAt: time }, ...prev];
-        });
+      const resCurrent = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`);
+      const dataCurrent = await resCurrent.json();
+
+      if (resCurrent.ok) {
+        if (weatherList.some(city => city.id === dataCurrent.id)) {
+          alert("This city is already in your list!");
+          return;
+        }
+
+        const resForecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${API_KEY}`);
+        const dataForecast = await resForecast.json();
+
+        const time = new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+        
+        const newCity = { 
+          ...dataCurrent, 
+          forecast: dataForecast.list, 
+          isFavorite: false, // ТУТ FALSE, як ти і хотів
+          addedAt: time 
+        };
+        
+        setWeatherList(prev => [newCity, ...prev]);
       } else {
         alert("City not found!");
       }
@@ -64,65 +94,61 @@ function App() {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("weatherUser");
-    setUser(null);
-  };
-
-  useEffect(() => {
-    if (user) {
-      const saved = localStorage.getItem(`weatherCities_${user.email}`);
-      setWeatherList(saved ? JSON.parse(saved) : []);
-    } else {
-      setWeatherList([]);
-    }
-  }, [user]);
+  // ... (handleSignUp, handleLogin, handleLogout, onSeeMore залишаються як були)
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyle />
-      
       <Header 
         user={user} 
         onOpenAuth={() => setIsModalOpen(true)} 
-        onLogout={handleLogout}
-        toggleTheme={toggleTheme}
-        currentTheme={theme}
+        onLogout={() => { setUser(null); setIsLoaded(false); localStorage.removeItem("weatherUser"); }} 
+        toggleTheme={() => {
+          const next = theme === "light" ? "dark" : "light";
+          setTheme(next);
+          localStorage.setItem("appTheme", next);
+        }} 
+        currentTheme={theme} 
       />
-      
       <main>
-        {/* Тепер handleSearch точно визначено */}
         <Hero onSearch={handleSearch} />
-        
         <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-          <Cards
-            weatherList={weatherList}
-            onDelete={(id) => setWeatherList((prev) => prev.filter((c) => c.id !== id))}
-            onSeeMore={(data) => setActiveDetails(data)}
-            onToggleFavorite={(id) => setWeatherList(prev => prev.map(c => c.id === id ? {...c, isFavorite: !c.isFavorite} : c))}
+          <Cards 
+            weatherList={weatherList} 
+            onDelete={(id) => setWeatherList(p => p.filter(c => c.id !== id))} 
+            onSeeMore={(data) => {
+              setActiveDetails(data);
+              setTimeout(() => detailsRef.current?.scrollIntoView({ behavior: "smooth" }), 100);
+            }} 
+            onToggleFavorite={(id) => setWeatherList(p => p.map(c => c.id === id ? {...c, isFavorite: !c.isFavorite} : c))} 
           />
-          {activeDetails && <Details data={activeDetails} />}
+          
+          <div ref={detailsRef}>
+            {activeDetails && <Details data={activeDetails} onClose={() => setActiveDetails(null)} />}
+          </div>
+          
           <Pets />
           <Nature />
         </div>
       </main>
-      
       <Footer />
-      
-      <AuthModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSignUp={(userData) => { 
-          setUser(userData); 
-          localStorage.setItem("weatherUser", JSON.stringify(userData)); 
-          setIsModalOpen(false); 
-        }}
-        onLogin={(userData) => { 
-          setUser(userData); 
-          localStorage.setItem("weatherUser", JSON.stringify(userData)); 
-          setIsModalOpen(false); 
-          return true; 
-        }}
+      <AuthModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        onSignUp={(u) => {
+          setUser(u);
+          localStorage.setItem("weatherUser", JSON.stringify(u));
+          const all = JSON.parse(localStorage.getItem("allUsers") || "[]");
+          localStorage.setItem("allUsers", JSON.stringify([...all, u]));
+          setIsModalOpen(false);
+        }} 
+        onLogin={(loginData) => {
+          const all = JSON.parse(localStorage.getItem("allUsers") || "[]");
+          const found = all.find(u => u.email === loginData.email);
+          setUser(found || loginData);
+          localStorage.setItem("weatherUser", JSON.stringify(found || loginData));
+          setIsModalOpen(false);
+        }} 
       />
     </ThemeProvider>
   );

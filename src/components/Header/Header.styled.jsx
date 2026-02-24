@@ -39,24 +39,29 @@ export const ThemeSwitcherContainer = styled.div`
     color: ${(props) => props.theme.text};
   }
 `;
-
 export const NavLinks = styled.nav`
   display: flex;
   gap: 30px;
+  
+  /* ДОДАЄМО ВІДСТУП ВІД ЛОГОТИПА */
+  margin-left: 60px; 
+
   @media (max-width: 1024px) {
     display: none;
   }
+
   a {
     text-decoration: none;
     color: ${(props) => props.theme.text};
     font-weight: 500;
+    font-size: 18px; /* Можна трохи збільшити, щоб було як на макеті */
     transition: 0.2s;
+
     &:hover {
-      color: ${(props) => props.theme.accent};
+      color: ${(props) => props.theme.accent || '#ffb366'};
     }
   }
 `;
-
 export const AuthSection = styled.div`
   display: flex;
   align-items: center;
@@ -90,14 +95,39 @@ export const UserName = styled.span`
   font-weight: 600;
   color: ${(props) => props.theme.text};
 `;
-
 export const LogoutBtn = styled.button`
+  /* ФОН ТА РАМКА: підлаштовуємо під тему */
   background: transparent;
-  border: 1px solid ${(props) => props.theme.headerBorder};
-  color: ${(props) => props.theme.text};
-  padding: 5px 15px;
-  border-radius: 10px;
+  border: 1px solid ${(props) => props.theme.text}; /* Колір рамки як у тексту */
+  color: ${(props) => props.theme.text};           /* Колір тексту з теми */
+  
+  padding: 6px 16px;
+  border-radius: 20px;
   cursor: pointer;
+
+  /* ЦЕНТРУВАННЯ ТЕКСТУ */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* ШРИФТ: зберігаємо твій стандартний */
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1; /* Важливо для центрування */
+  
+  transition: all 0.3s ease;
+
+  &:hover {
+    /* При наведенні робимо акцент (наприклад, помаранчевим) */
+    border-color: #ffb366;
+    color: #ffb366;
+    background: rgba(255, 179, 102, 0.1);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 `;
 
 export const MobileMenuBtn = styled.button`
