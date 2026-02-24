@@ -45,7 +45,7 @@
 
 <div align="center">
   <p>Телефон: </p>
-<img src="img/img-readme/mobile.png" alt="Mobile Version" width="300">
+<img src="img/img-readme/phone.png" alt="Mobile Version" width="300">
 </div>
 
 - **Перемикач тем** - Підтримка Світлого та Темного режимів для комфортного перегляду в будь-який час доби.
