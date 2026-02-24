@@ -50,26 +50,25 @@ const Footer = () => {
         <FooterInfoBlock>
           <FooterTitle>Contact us</FooterTitle>
           <SocialWrapper>
-            {/* ЗАМІНИ ПОСИЛАННЯ НИЖЧЕ НА СВОЇ РЕАЛЬНІ ПРОФІЛІ */}
-            <SocialIcon 
-              href="https://www.instagram.com/твій_логін" 
-              target="_blank" 
+            <SocialIcon
+              href="https://www.instagram.com/"
+              target="_blank"
               rel="noopener noreferrer"
             >
               <img src={insta} alt="Instagram" />
             </SocialIcon>
 
-            <SocialIcon 
-              href="https://www.facebook.com/твій_профіль" 
-              target="_blank" 
+            <SocialIcon
+              href="https://www.facebook.com/"
+              target="_blank"
               rel="noopener noreferrer"
             >
               <img src={fb} alt="Facebook" />
             </SocialIcon>
 
-            <SocialIcon 
-              href="https://wa.me/380XXXXXXXXX" // формат wa.me/номер_телефону
-              target="_blank" 
+            <SocialIcon
+              href="https://wa.me/"
+              target="_blank"
               rel="noopener noreferrer"
             >
               <img src={wa} alt="WhatsApp" />

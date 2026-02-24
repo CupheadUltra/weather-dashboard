@@ -39,8 +39,8 @@ export const EmptyState = styled.div`
 `;
 
 export const CardWrapper = styled.div`
-  /* Адаптація під тему: у темній темі робимо темнішим */
-  background: ${(props) => (props.theme.body === "#121212" ? "#1e1e1e" : "#ebebeb")};
+  background: ${(props) =>
+    props.theme.body === "#121212" ? "#1e1e1e" : "#ebebeb"};
   border-radius: 35px;
   padding: 25px;
   display: flex;
@@ -120,7 +120,6 @@ export const DateLine = styled.div`
   opacity: 0.8;
   display: flex;
   align-items: center;
-
   span {
     margin: 0 8px;
     color: #ccc;
@@ -167,13 +166,12 @@ export const ActionIcon = styled.button`
   border-radius: 50%;
   transition: background 0.2s;
   color: ${(props) => props.theme.text};
-
   img {
     width: 22px;
     height: 22px;
     object-fit: contain;
-    /* Інвертуємо іконки-картинки для темної теми */
-    filter: ${(props) => (props.theme.body === "#121212" ? "invert(1)" : "none")};
+    filter: ${(props) =>
+      props.theme.body === "#121212" ? "invert(1)" : "none"};
   }
 
   &:hover {

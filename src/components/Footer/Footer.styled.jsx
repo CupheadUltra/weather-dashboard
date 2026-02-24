@@ -2,13 +2,16 @@ import styled from "styled-components";
 
 export const StyledFooter = styled.footer`
   width: 100%;
-  /* Динамічний колір фону залежно від теми */
-  background-color: ${(props) => props.theme.footerBg || (props.theme.body === "#121212" ? "#1e1e1e" : "#ffb366")};
-  padding: 30px 0 0 0; 
+  background-color: ${(props) =>
+    props.theme.footerBg ||
+    (props.theme.body === "#121212" ? "#1e1e1e" : "#ffb366")};
+  padding: 30px 0 0 0;
   margin-top: 50px;
   box-sizing: border-box;
-  /* Трюк для фону на всю ширину */
-  box-shadow: 0 0 0 100vmax ${(props) => props.theme.footerBg || (props.theme.body === "#121212" ? "#1e1e1e" : "#ffb366")};
+  box-shadow: 0 0 0 100vmax
+    ${(props) =>
+      props.theme.footerBg ||
+      (props.theme.body === "#121212" ? "#1e1e1e" : "#ffb366")};
   clip-path: inset(0 -100vmax);
   overflow: hidden;
   transition: background-color 0.3s ease;
@@ -32,13 +35,13 @@ export const FooterContainer = styled.div`
 
 export const FooterLogo = styled.div`
   margin-right: 150px;
-  margin-bottom: 60px; 
+  margin-bottom: 60px;
 
   img {
     height: 55px;
     width: auto;
     display: block;
-    filter: ${(props) => 
+    filter: ${(props) =>
       props.theme.body === "#121212" ? "invert(1) brightness(2)" : "none"};
   }
 
@@ -53,7 +56,7 @@ export const FooterInfoBlock = styled.div`
   flex-direction: column;
   gap: 5px;
   font-family: "Montserrat Alternates", sans-serif;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 
   &.address-block {
     margin-right: 120px;
@@ -86,7 +89,7 @@ export const SocialWrapper = styled.div`
   display: flex;
   gap: 20px;
   align-items: center;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 
   @media (max-width: 1024px) {
     margin-bottom: 10px;
@@ -132,7 +135,7 @@ export const CharacterImg = styled.img`
   transform: ${(props) => {
     let t = "";
     if (props.$mirrored) t += "scaleX(-1) ";
-    if (props.$mirrored && props.$isMoving) t += "translateX(-40px)"; 
+    if (props.$mirrored && props.$isMoving) t += "translateX(-40px)";
     return t || "none";
   }};
 `;

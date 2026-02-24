@@ -81,7 +81,6 @@ return (
       <AuthSection>
         {user ? (
           <>
-            {/* Використовуємо нашу змінну displayName */}
             <UserName>{displayName}</UserName>
             <LogoutBtn onClick={onLogout}>Log Out</LogoutBtn>
           </>
@@ -91,7 +90,6 @@ return (
         <ProfileIcon 
             src={userIcon} 
             alt="profile" 
-            /* Додаємо інверсію іконки для темної теми, якщо це PNG */
             style={{ filter: currentTheme === "dark" ? "invert(1) brightness(2)" : "none" }}
         />
       </AuthSection>

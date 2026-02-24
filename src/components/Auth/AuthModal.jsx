@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; // Додано useEffect
+import React, { useState, useEffect } from "react";
 import {
   ModalOverlay,
   ModalContent,
@@ -37,7 +37,6 @@ const AuthModal = ({ isOpen, onClose, onSignUp, onLogin }) => {
 
 return (
     <ModalOverlay onClick={onClose}>
-      {/* Додаємо ModalContent, який має фон і тіні */}
       <ModalContent onClick={(e) => e.stopPropagation()}>
         
         <span

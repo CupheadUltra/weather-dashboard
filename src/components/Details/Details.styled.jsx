@@ -4,8 +4,8 @@ export const DetailsSection = styled.section`
   padding: 40px;
   border-radius: 35px;
   margin-top: 40px;
-  /* Адаптація фону під тему */
-  background: ${(props) => (props.theme.body === "#121212" ? "#1e1e1e" : "#fff")};
+  background: ${(props) =>
+    props.theme.body === "#121212" ? "#1e1e1e" : "#fff"};
   color: ${(props) => props.theme.text};
   border: 1px solid ${(props) => props.theme.headerBorder};
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -25,7 +25,8 @@ export const DetailsGrid = styled.div`
 `;
 
 export const DetailCard = styled.div`
-  background: ${(props) => (props.theme.body === "#121212" ? "#2a2a2a" : "#f5f5f5")};
+  background: ${(props) =>
+    props.theme.body === "#121212" ? "#2a2a2a" : "#f5f5f5"};
   padding: 20px;
   border-radius: 25px;
   display: flex;
@@ -55,7 +56,10 @@ export const DetailCard = styled.div`
 export const ChartContainer = styled.div`
   margin-top: 30px;
   padding: 20px;
-  background: ${(props) => (props.theme.body === "#121212" ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)")};
+  background: ${(props) =>
+    props.theme.body === "#121212"
+      ? "rgba(255,255,255,0.03)"
+      : "rgba(0,0,0,0.02)"};
   border-radius: 25px;
 
   h3 {
@@ -66,7 +70,7 @@ export const ChartContainer = styled.div`
 
 export const ForecastList = styled.div`
   margin-top: 40px;
-  
+
   h3 {
     margin-bottom: 20px;
     font-size: 18px;
@@ -79,12 +83,14 @@ export const ForecastItem = styled.div`
   justify-content: space-between;
   padding: 15px 25px;
   margin-bottom: 10px;
-  background: ${(props) => (props.theme.body === "#121212" ? "#2a2a2a" : "#f9f9f9")};
+  background: ${(props) =>
+    props.theme.body === "#121212" ? "#2a2a2a" : "#f9f9f9"};
   border-radius: 20px;
   transition: background 0.2s;
 
   &:hover {
-    background: ${(props) => (props.theme.body === "#121212" ? "#333" : "#f0f0f0")};
+    background: ${(props) =>
+      props.theme.body === "#121212" ? "#333" : "#f0f0f0"};
   }
 
   .date {
@@ -107,7 +113,12 @@ export const ForecastItem = styled.div`
 
   @media (max-width: 500px) {
     padding: 10px 15px;
-    .date { width: 70px; font-size: 13px; }
-    .desc { display: none; } /* Ховаємо опис на маленьких екранах */
+    .date {
+      width: 70px;
+      font-size: 13px;
+    }
+    .desc {
+      display: none;
+    }
   }
 `;

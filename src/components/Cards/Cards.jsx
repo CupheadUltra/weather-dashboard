@@ -1,9 +1,15 @@
 import React from "react";
-import { IoSunny, IoCloudy, IoSnow, IoHeart, IoHeartOutline, IoSearchOutline } from "react-icons/io5";
+import {
+  IoSunny,
+  IoCloudy,
+  IoSnow,
+  IoHeart,
+  IoHeartOutline,
+  IoSearchOutline,
+} from "react-icons/io5";
 import refreshImg from "../../imgs/cards-refresh.png";
 import trashImg from "../../imgs/cards-delete.png";
 
-// Переконайся, що ці назви точно збігаються з тим, що в Cards.styled.js
 import {
   CardsGrid,
   EmptyState,
@@ -15,7 +21,7 @@ import {
   TempValue,
   CardActions,
   ActionIcon,
-  MoreBtn
+  MoreBtn,
 } from "./Cards.styled";
 
 const SingleCard = ({ data, onDelete, onSeeMore, onToggleFavorite }) => {
@@ -37,7 +43,7 @@ const SingleCard = ({ data, onDelete, onSeeMore, onToggleFavorite }) => {
         <span>{data.name}</span>
         <span>{data.sys?.country}</span>
       </CardTop>
-      
+
       <TimeText>{data.addedAt || "00:00"}</TimeText>
       <DateLine>
         {numericDate} <span>|</span> {weekday}
@@ -52,7 +58,11 @@ const SingleCard = ({ data, onDelete, onSeeMore, onToggleFavorite }) => {
         </ActionIcon>
 
         <ActionIcon onClick={() => onToggleFavorite(data.id)}>
-          {data.isFavorite ? <IoHeart size={24} color="#ff4d4d" /> : <IoHeartOutline size={24} />}
+          {data.isFavorite ? (
+            <IoHeart size={24} color="#ff4d4d" />
+          ) : (
+            <IoHeartOutline size={24} />
+          )}
         </ActionIcon>
 
         <MoreBtn onClick={() => onSeeMore(data)}>See more</MoreBtn>
@@ -65,7 +75,6 @@ const SingleCard = ({ data, onDelete, onSeeMore, onToggleFavorite }) => {
   );
 };
 
-// ОСНОВНИЙ КОМПОНЕНТ
 const Cards = ({ weatherList, onDelete, onSeeMore, onToggleFavorite }) => {
   const isEmpty = !weatherList || weatherList.length === 0;
 
@@ -91,5 +100,4 @@ const Cards = ({ weatherList, onDelete, onSeeMore, onToggleFavorite }) => {
   );
 };
 
-// ДУЖЕ ВАЖЛИВО: Тільки один default export
 export default Cards;

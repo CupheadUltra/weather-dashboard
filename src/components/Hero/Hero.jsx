@@ -71,7 +71,6 @@ const Hero = ({ onSearch }) => {
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         />
-        {/* Переконайся, що тут onClick={handleSearch} */}
         <button type="button" onClick={handleSearch}>
           <svg
             width="20"

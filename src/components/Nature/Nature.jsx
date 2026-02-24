@@ -1,17 +1,17 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectCoverflow } from 'swiper/modules';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectCoverflow } from "swiper/modules";
 
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
+import "swiper/css";
+import "swiper/css/effect-coverflow";
 
-import nature1 from '../../imgs/nature1.png';
-import nature2 from '../../imgs/nature2.png';
-import nature3 from '../../imgs/nature3.png';
-import nature4 from '../../imgs/nature4.png';
-import nature5 from '../../imgs/nature5.png'; 
+import nature1 from "../../imgs/nature1.png";
+import nature2 from "../../imgs/nature2.png";
+import nature3 from "../../imgs/nature3.png";
+import nature4 from "../../imgs/nature4.png";
+import nature5 from "../../imgs/nature5.png";
 
-import { NatureSection, NatureTitle, SwiperWrapper } from './Nature.styled';
+import { NatureSection, NatureTitle, SwiperWrapper } from "./Nature.styled";
 
 const Nature = () => {
   const images = [nature1, nature2, nature3, nature4, nature5];
@@ -21,13 +21,13 @@ const Nature = () => {
         <NatureTitle>Beautiful nature</NatureTitle>
         <SwiperWrapper>
           <Swiper
-            modules={[EffectCoverflow]} 
-            effect={'coverflow'}
+            modules={[EffectCoverflow]}
+            effect={"coverflow"}
             grabCursor={true}
             centeredSlides={true}
-            loop={true} 
+            loop={true}
             loopAdditionalSlides={3}
-            slidesPerView={'auto'} 
+            slidesPerView={"auto"}
             coverflowEffect={{
               rotate: 0,
               stretch: -50,

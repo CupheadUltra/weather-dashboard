@@ -20,28 +20,30 @@ const GlobalStyle = createGlobalStyle`
     margin: 0; padding: 0; overflow-x: hidden;
   }
 `;
-// ... (всі твої імпорти зверху залишаються без змін)
 
 function App() {
-  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem("weatherUser")));
+  const [user, setUser] = useState(() =>
+    JSON.parse(localStorage.getItem("weatherUser"))
+  );
   const [weatherList, setWeatherList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeDetails, setActiveDetails] = useState(null);
-  const [theme, setTheme] = useState(() => localStorage.getItem("appTheme") || "light");
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("appTheme") || "light"
+  );
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
   const isInitialMount = useRef(true);
   const detailsRef = useRef(null);
   const API_KEY = "b75aa9e8660ddfbe229608aae9f70ff1";
 
-  // 1. Завантаження при вході (фільтруємо тільки улюблені з бази)
   useEffect(() => {
     if (user && user.email) {
       const saved = localStorage.getItem(`weatherCities_${user.email}`);
       if (saved) {
         const parsed = JSON.parse(saved);
-        // При завантаженні залишаємо тільки збережені (лайкнуті)
-        setWeatherList(parsed.filter(city => city.isFavorite));
+
+        setWeatherList(parsed.filter((city) => city.isFavorite));
       }
     } else {
       setWeatherList([]);
@@ -50,10 +52,12 @@ function App() {
     setIsLoaded(true);
   }, [user]);
 
-  // 2. Збереження при зміні списку
   useEffect(() => {
     if (!isInitialMount.current && user && user.email) {
-      localStorage.setItem(`weatherCities_${user.email}`, JSON.stringify(weatherList));
+      localStorage.setItem(
+        `weatherCities_${user.email}`,
+        JSON.stringify(weatherList)
+      );
     }
   }, [weatherList, user]);
 
@@ -62,30 +66,37 @@ function App() {
       alert(user ? "Please enter city name" : "Please log in to add cities!");
       return;
     }
-    
+
     try {
-      const resCurrent = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`);
+      const resCurrent = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`
+      );
       const dataCurrent = await resCurrent.json();
 
       if (resCurrent.ok) {
-        if (weatherList.some(city => city.id === dataCurrent.id)) {
+        if (weatherList.some((city) => city.id === dataCurrent.id)) {
           alert("This city is already in your list!");
           return;
         }
 
-        const resForecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${API_KEY}`);
+        const resForecast = await fetch(
+          `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${API_KEY}`
+        );
         const dataForecast = await resForecast.json();
 
-        const time = new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
-        
-        const newCity = { 
-          ...dataCurrent, 
-          forecast: dataForecast.list, 
-          isFavorite: false, // ТУТ FALSE, як ти і хотів
-          addedAt: time 
+        const time = new Date().toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        const newCity = {
+          ...dataCurrent,
+          forecast: dataForecast.list,
+          isFavorite: false,
+          addedAt: time,
         };
-        
-        setWeatherList(prev => [newCity, ...prev]);
+
+        setWeatherList((prev) => [newCity, ...prev]);
       } else {
         alert("City not found!");
       }
@@ -94,61 +105,86 @@ function App() {
     }
   };
 
-  // ... (handleSignUp, handleLogin, handleLogout, onSeeMore залишаються як були)
-
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyle />
-      <Header 
-        user={user} 
-        onOpenAuth={() => setIsModalOpen(true)} 
-        onLogout={() => { setUser(null); setIsLoaded(false); localStorage.removeItem("weatherUser"); }} 
+      <Header
+        user={user}
+        onOpenAuth={() => setIsModalOpen(true)}
+        onLogout={() => {
+          setUser(null);
+          setIsLoaded(false);
+          localStorage.removeItem("weatherUser");
+        }}
         toggleTheme={() => {
           const next = theme === "light" ? "dark" : "light";
           setTheme(next);
           localStorage.setItem("appTheme", next);
-        }} 
-        currentTheme={theme} 
+        }}
+        currentTheme={theme}
       />
       <main>
         <Hero onSearch={handleSearch} />
-        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-          <Cards 
-            weatherList={weatherList} 
-            onDelete={(id) => setWeatherList(p => p.filter(c => c.id !== id))} 
+        <div
+          className="container"
+          style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}
+        >
+          <Cards
+            weatherList={weatherList}
+            onDelete={(id) =>
+              setWeatherList((p) => p.filter((c) => c.id !== id))
+            }
             onSeeMore={(data) => {
               setActiveDetails(data);
-              setTimeout(() => detailsRef.current?.scrollIntoView({ behavior: "smooth" }), 100);
-            }} 
-            onToggleFavorite={(id) => setWeatherList(p => p.map(c => c.id === id ? {...c, isFavorite: !c.isFavorite} : c))} 
+              setTimeout(
+                () =>
+                  detailsRef.current?.scrollIntoView({ behavior: "smooth" }),
+                100
+              );
+            }}
+            onToggleFavorite={(id) =>
+              setWeatherList((p) =>
+                p.map((c) =>
+                  c.id === id ? { ...c, isFavorite: !c.isFavorite } : c
+                )
+              )
+            }
           />
-          
+
           <div ref={detailsRef}>
-            {activeDetails && <Details data={activeDetails} onClose={() => setActiveDetails(null)} />}
+            {activeDetails && (
+              <Details
+                data={activeDetails}
+                onClose={() => setActiveDetails(null)}
+              />
+            )}
           </div>
-          
+
           <Pets />
           <Nature />
         </div>
       </main>
       <Footer />
-      <AuthModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+      <AuthModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
         onSignUp={(u) => {
           setUser(u);
           localStorage.setItem("weatherUser", JSON.stringify(u));
           const all = JSON.parse(localStorage.getItem("allUsers") || "[]");
           localStorage.setItem("allUsers", JSON.stringify([...all, u]));
           setIsModalOpen(false);
-        }} 
+        }}
         onLogin={(loginData) => {
           const all = JSON.parse(localStorage.getItem("allUsers") || "[]");
-          const found = all.find(u => u.email === loginData.email);
+          const found = all.find((u) => u.email === loginData.email);
           setUser(found || loginData);
-          localStorage.setItem("weatherUser", JSON.stringify(found || loginData));
+          localStorage.setItem(
+            "weatherUser",
+            JSON.stringify(found || loginData)
+          );
           setIsModalOpen(false);
-        }} 
+        }}
       />
     </ThemeProvider>
   );

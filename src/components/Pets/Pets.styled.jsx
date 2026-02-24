@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const PetsSection = styled.section`
   padding: 60px 0;
   font-family: "Montserrat Alternates", sans-serif;
-  /* Плавний перехід фону, якщо він відрізняється від body */
   background: ${(props) => props.theme.body};
   transition: background 0.3s ease;
 
@@ -16,7 +15,6 @@ export const PetsTitle = styled.h2`
   font-weight: 600;
   font-size: 28px;
   margin-bottom: 35px;
-  /* Динамічний колір тексту */
   color: ${(props) => props.theme.text};
   transition: color 0.3s ease;
 `;
@@ -39,7 +37,6 @@ export const PetImage = styled.img`
   aspect-ratio: 16 / 11;
   object-fit: cover;
   border-radius: 20px;
-  /* Тінь змінюється залежно від теми */
   box-shadow: ${(props) => 
     props.theme.body === "#121212" 
       ? "0 4px 15px rgba(0, 0, 0, 0.5)" 
@@ -51,10 +48,9 @@ export const PetDescription = styled.p`
   font-weight: 400;
   font-size: 15px;
   line-height: 1.4;
-  /* Динамічний колір опису */
   color: ${(props) => props.theme.text};
   transition: color 0.3s ease;
-  opacity: 0.9; /* Трохи м'якший колір для тексту */
+  opacity: 0.9; 
 `;
 
 export const SeeMoreButton = styled.button`
@@ -66,7 +62,6 @@ export const SeeMoreButton = styled.button`
   font-family: inherit;
   font-weight: 600;
   cursor: pointer;
-  /* Текст на кнопці завжди чорний для контрасту */
   color: #000;
   transition: background-color 0.3s ease, transform 0.2s ease;
 

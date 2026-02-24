@@ -21,7 +21,7 @@ export const Title = styled.h1`
   font-weight: 600;
   margin-bottom: 40px;
   text-align: center;
-  
+
   @media (min-width: 1200px) {
     font-size: 52px;
   }
@@ -34,7 +34,7 @@ export const InfoContainer = styled.div`
   gap: 30px;
   margin-bottom: 50px;
   width: 100%;
-  max-width: 700px; 
+  max-width: 700px;
 
   @media (max-width: 900px) {
     flex-direction: column;
@@ -44,7 +44,7 @@ export const InfoContainer = styled.div`
 `;
 
 export const InfoText = styled.p`
-  flex: 1.2; 
+  flex: 1.2;
   font-size: 18px;
   line-height: 1.5;
   text-align: right;
@@ -72,7 +72,7 @@ export const DateBlock = styled.div`
   flex: 1;
   font-size: 18px;
   text-align: left;
-  
+
   span {
     display: block;
     font-size: 20px;
@@ -88,7 +88,7 @@ export const DateBlock = styled.div`
 export const SearchWrapper = styled.div`
   display: flex;
   width: 100%;
-  max-width: 550px; 
+  max-width: 550px;
   height: 55px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
@@ -123,7 +123,8 @@ export const SearchWrapper = styled.div`
       background-color: #ffa040;
     }
 
-    svg, img {
+    svg,
+    img {
       width: 24px;
       height: 24px;
     }

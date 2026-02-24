@@ -37,7 +37,7 @@ export const Slider = styled.span`
   }
 
   ${ToggleInput}:checked + & {
-    background-color: #ffb366; /* Колір при ввімкненні */
+    background-color: #ffb366;
   }
 
   ${ToggleInput}:checked + &:before {

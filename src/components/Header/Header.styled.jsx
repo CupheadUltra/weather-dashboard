@@ -42,9 +42,8 @@ export const ThemeSwitcherContainer = styled.div`
 export const NavLinks = styled.nav`
   display: flex;
   gap: 30px;
-  
-  /* ДОДАЄМО ВІДСТУП ВІД ЛОГОТИПА */
-  margin-left: 60px; 
+
+  margin-left: 60px;
 
   @media (max-width: 1024px) {
     display: none;
@@ -54,11 +53,11 @@ export const NavLinks = styled.nav`
     text-decoration: none;
     color: ${(props) => props.theme.text};
     font-weight: 500;
-    font-size: 18px; /* Можна трохи збільшити, щоб було як на макеті */
+    font-size: 18px;
     transition: 0.2s;
 
     &:hover {
-      color: ${(props) => props.theme.accent || '#ffb366'};
+      color: ${(props) => props.theme.accent || "#ffb366"};
     }
   }
 `;
@@ -96,30 +95,26 @@ export const UserName = styled.span`
   color: ${(props) => props.theme.text};
 `;
 export const LogoutBtn = styled.button`
-  /* ФОН ТА РАМКА: підлаштовуємо під тему */
   background: transparent;
-  border: 1px solid ${(props) => props.theme.text}; /* Колір рамки як у тексту */
-  color: ${(props) => props.theme.text};           /* Колір тексту з теми */
-  
+  border: 1px solid ${(props) => props.theme.text};
+  color: ${(props) => props.theme.text};
+
   padding: 6px 16px;
   border-radius: 20px;
   cursor: pointer;
 
-  /* ЦЕНТРУВАННЯ ТЕКСТУ */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  
-  /* ШРИФТ: зберігаємо твій стандартний */
+
   font-family: inherit;
   font-size: 14px;
   font-weight: 500;
-  line-height: 1; /* Важливо для центрування */
-  
+  line-height: 1;
+
   transition: all 0.3s ease;
 
   &:hover {
-    /* При наведенні робимо акцент (наприклад, помаранчевим) */
     border-color: #ffb366;
     color: #ffb366;
     background: rgba(255, 179, 102, 0.1);

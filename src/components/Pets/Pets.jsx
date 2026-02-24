@@ -9,7 +9,6 @@ import {
   SeeMoreButton,
 } from "./Pets.styled";
 
-// 1. Імпортуй свої локальні картинки
 import pet1 from "../../imgs/pet1.png";
 import pet2 from "../../imgs/pet2.png";
 import pet3 from "../../imgs/pet3.png";
@@ -17,17 +16,17 @@ import pet4 from "../../imgs/pet4.png";
 
 const Pets = () => {
   const initialPets = [
-    { id: 'local1', webformatURL: pet1, tags: "Your favorite • Dog" },
-    { id: 'local2', webformatURL: pet2, tags: "Your favorite • Cat" },
-    { id: 'local3', webformatURL: pet3, tags: "Your favorite • Dog" },
-    { id: 'local4', webformatURL: pet4, tags: "Your favorite • Dog" },
+    { id: "local1", webformatURL: pet1, tags: "Your favorite • Dog" },
+    { id: "local2", webformatURL: pet2, tags: "Your favorite • Cat" },
+    { id: "local3", webformatURL: pet3, tags: "Your favorite • Dog" },
+    { id: "local4", webformatURL: pet4, tags: "Your favorite • Dog" },
   ];
 
   const [images, setImages] = useState(initialPets);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const API_KEY = "53703295-e75262fb494aab51a48093056"; 
+  const API_KEY = "53703295-e75262fb494aab51a48093056";
 
   const fetchPets = async (pageNum) => {
     setLoading(true);
@@ -62,8 +61,8 @@ const Pets = () => {
           <PetCard key={img.id || index}>
             <PetImage src={img.webformatURL} alt={img.tags} />
             <PetDescription>
-              {img.id.toString().startsWith('local') 
-                ? img.tags 
+              {img.id.toString().startsWith("local")
+                ? img.tags
                 : img.tags.split(",").slice(0, 3).join(" • ")}
             </PetDescription>
           </PetCard>

@@ -14,25 +14,17 @@ export const ModalOverlay = styled.div`
   backdrop-filter: blur(3px);
 `;
 export const ModalContent = styled.div`
-  /* Використовуємо лише одну властивість для фону */
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.text};
-  
-  /* Додаємо невелику прозорість через opacity всього блоку або через rgba, 
-     але безпечніше просто за замовчуванням мати body колір */
   padding: 40px;
   border-radius: 20px;
   position: relative;
   width: 90%;
   max-width: 400px;
-  
-  /* Важливо: чітка межа та тінь допоможуть побачити фон */
   border: 1px solid ${(props) => props.theme.headerBorder};
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  
   z-index: 2001;
   transition: background-color 0.3s ease;
-
   h2 {
     margin-top: 0;
     text-align: center;
@@ -51,7 +43,6 @@ export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-
   label {
     font-size: 14px;
     font-weight: 500;
@@ -62,7 +53,8 @@ export const InputGroup = styled.div`
     padding: 12px 15px;
     border-radius: 10px;
     border: 1px solid ${(props) => props.theme.headerBorder};
-    background-color: ${(props) => (props.theme.body === "#121212" ? "#2a2a2a" : "#fff")};
+    background-color: ${(props) =>
+      props.theme.body === "#121212" ? "#2a2a2a" : "#fff"};
     color: ${(props) => props.theme.text};
     font-size: 16px;
     outline: none;
@@ -100,7 +92,6 @@ export const SwitchText = styled.p`
   margin-top: 20px;
   font-size: 14px;
   color: ${(props) => props.theme.text};
-
   span {
     color: #ffb366;
     cursor: pointer;
