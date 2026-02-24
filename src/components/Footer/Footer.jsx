@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-// Імпорти логотипу та соцмереж (переконайся, що шляхи правильні)
 import logo from "../../imgs/logoForecast.svg";
 import insta from "../../imgs/insta.png";
 import fb from "../../imgs/face.png";
 import wa from "../../imgs/whatsapp.png";
 
-// Статичні персонажі
 import char1 from "../../imgs/footer-anim/lanino.png";
 import char2 from "../../imgs/footer-anim/elnina.png";
-// Гіфки анімації
 import char1move from "../../imgs/footer-anim/lanino-move.gif";
 import char2move from "../../imgs/footer-anim/elnina-move.gif";
 
@@ -30,10 +27,7 @@ const Footer = () => {
 
   const handleCharacterClick = () => {
     if (isMoving) return;
-
     setIsMoving(true);
-
-    // Зміни 2000 на тривалість твоєї гіфки в мілісекундах
     setTimeout(() => {
       setIsMoving(false);
     }, 2000);
@@ -56,13 +50,28 @@ const Footer = () => {
         <FooterInfoBlock>
           <FooterTitle>Contact us</FooterTitle>
           <SocialWrapper>
-            <SocialIcon href="#">
+            {/* ЗАМІНИ ПОСИЛАННЯ НИЖЧЕ НА СВОЇ РЕАЛЬНІ ПРОФІЛІ */}
+            <SocialIcon 
+              href="https://www.instagram.com/твій_логін" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
               <img src={insta} alt="Instagram" />
             </SocialIcon>
-            <SocialIcon href="#">
+
+            <SocialIcon 
+              href="https://www.facebook.com/твій_профіль" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
               <img src={fb} alt="Facebook" />
             </SocialIcon>
-            <SocialIcon href="#">
+
+            <SocialIcon 
+              href="https://wa.me/380XXXXXXXXX" // формат wa.me/номер_телефону
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
               <img src={wa} alt="WhatsApp" />
             </SocialIcon>
           </SocialWrapper>
