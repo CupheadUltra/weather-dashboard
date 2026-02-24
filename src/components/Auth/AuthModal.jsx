@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; // Додано useEffect
 import {
   ModalOverlay,
+  ModalContent,
   FormContainer,
   InputGroup,
   SubmitButton,
@@ -34,79 +35,81 @@ const AuthModal = ({ isOpen, onClose, onSignUp, onLogin }) => {
     isLoginMode ? onLogin(formData) : onSignUp(formData);
   };
 
-  return (
+return (
     <ModalOverlay onClick={onClose}>
-      <FormContainer
-        onClick={(e) => e.stopPropagation()}
-        onSubmit={handleSubmit}
-      >
+      {/* Додаємо ModalContent, який має фон і тіні */}
+      <ModalContent onClick={(e) => e.stopPropagation()}>
+        
         <span
           onClick={onClose}
           style={{
             position: "absolute",
-            top: "25px",
-            right: "30px",
+            top: "20px",
+            right: "20px",
             cursor: "pointer",
             fontSize: "24px",
+            zIndex: 10
           }}
         >
           &times;
         </span>
 
-        <h2>{isLoginMode ? "Log In" : "Sign up"}</h2>
+        <FormContainer onSubmit={handleSubmit}>
+          <h2>{isLoginMode ? "Log In" : "Sign up"}</h2>
 
-        {!isLoginMode && (
+          {!isLoginMode && (
+            <InputGroup>
+              <label>Username</label>
+              <input
+                type="text"
+                placeholder="Username"
+                value={formData.username}
+                onChange={(e) =>
+                  setFormData({ ...formData, username: e.target.value })
+                }
+                required
+              />
+            </InputGroup>
+          )}
+
           <InputGroup>
-            <label>Username</label>
+            <label>E-Mail</label>
             <input
-              type="text"
-              placeholder="Username"
-              value={formData.username}
+              type="email"
+              placeholder="E-Mail"
+              value={formData.email}
               onChange={(e) =>
-                setFormData({ ...formData, username: e.target.value })
+                setFormData({ ...formData, email: e.target.value })
               }
               required
             />
           </InputGroup>
-        )}
 
-        <InputGroup>
-          <label>E-Mail</label>
-          <input
-            type="email"
-            placeholder="E-Mail"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-            required
-          />
-        </InputGroup>
+          <InputGroup>
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+              required
+            />
+          </InputGroup>
 
-        <InputGroup>
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
-            required
-          />
-        </InputGroup>
+          <SubmitButton type="submit">
+            {isLoginMode ? "Log In" : "Sign up"}
+          </SubmitButton>
 
-        <SubmitButton type="submit">
-          {isLoginMode ? "Log In" : "Sign up"}
-        </SubmitButton>
-
-        <SwitchText>
-          {isLoginMode ? "Don't have an account?" : "Already have an account?"}
-          <span onClick={() => setIsLoginMode(!isLoginMode)}>
-            {isLoginMode ? "Sign Up" : "Log In"}
-          </span>
-        </SwitchText>
-      </FormContainer>
+          <SwitchText>
+            {isLoginMode ? "Don't have an account?" : "Already have an account?"}
+            <span onClick={() => setIsLoginMode(!isLoginMode)}>
+              {isLoginMode ? "Sign Up" : "Log In"}
+            </span>
+          </SwitchText>
+        </FormContainer>
+      </ModalContent>
     </ModalOverlay>
   );
 };

@@ -18,6 +18,8 @@ const GlobalStyle = createGlobalStyle`
     color: ${(props) => props.theme.text};
     transition: background-color 0.3s ease, color 0.3s ease;
     margin: 0;
+    padding: 0;
+    overflow-x: hidden;
   }
 `;
 
@@ -40,16 +42,9 @@ function App() {
     localStorage.setItem("appTheme", nextTheme);
   };
 
-  useEffect(() => {
-    if (user) {
-      const saved = localStorage.getItem(`weatherCities_${user.email}`);
-      setWeatherList(saved ? JSON.parse(saved) : []);
-    } else {
-      setWeatherList([]);
-    }
-  }, [user]);
-
+  // --- ОСЬ ЦЯ ФУНКЦІЯ МАЄ БУТИ ТУТ ---
   const handleSearch = async (cityName) => {
+    if (!cityName) return;
     try {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`
@@ -74,19 +69,32 @@ function App() {
     setUser(null);
   };
 
+  useEffect(() => {
+    if (user) {
+      const saved = localStorage.getItem(`weatherCities_${user.email}`);
+      setWeatherList(saved ? JSON.parse(saved) : []);
+    } else {
+      setWeatherList([]);
+    }
+  }, [user]);
+
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyle />
-      <div className="container">
-        <Header 
-          user={user} 
-          onOpenAuth={() => setIsModalOpen(true)} 
-          onLogout={handleLogout}
-          toggleTheme={toggleTheme}
-          currentTheme={theme}
-        />
-        <main>
-          <Hero onSearch={handleSearch} />
+      
+      <Header 
+        user={user} 
+        onOpenAuth={() => setIsModalOpen(true)} 
+        onLogout={handleLogout}
+        toggleTheme={toggleTheme}
+        currentTheme={theme}
+      />
+      
+      <main>
+        {/* Тепер handleSearch точно визначено */}
+        <Hero onSearch={handleSearch} />
+        
+        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
           <Cards
             weatherList={weatherList}
             onDelete={(id) => setWeatherList((prev) => prev.filter((c) => c.id !== id))}
@@ -96,15 +104,26 @@ function App() {
           {activeDetails && <Details data={activeDetails} />}
           <Pets />
           <Nature />
-        </main>
-        <AuthModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          onSignUp={(userData) => { setUser(userData); localStorage.setItem("weatherUser", JSON.stringify(userData)); setIsModalOpen(false); }}
-          onLogin={(userData) => { setUser(userData); localStorage.setItem("weatherUser", JSON.stringify(userData)); setIsModalOpen(false); return true; }}
-        />
-      </div>
+        </div>
+      </main>
+      
       <Footer />
+      
+      <AuthModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSignUp={(userData) => { 
+          setUser(userData); 
+          localStorage.setItem("weatherUser", JSON.stringify(userData)); 
+          setIsModalOpen(false); 
+        }}
+        onLogin={(userData) => { 
+          setUser(userData); 
+          localStorage.setItem("weatherUser", JSON.stringify(userData)); 
+          setIsModalOpen(false); 
+          return true; 
+        }}
+      />
     </ThemeProvider>
   );
 }

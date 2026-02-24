@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const StyledFooter = styled.footer`
   width: 100%;
-  /* Колір тепер залежить від теми */
-  background-color: ${(props) => props.theme.footerBg || "#ffb366"};
+  /* Динамічний колір фону залежно від теми */
+  background-color: ${(props) => props.theme.footerBg || (props.theme.body === "#121212" ? "#1e1e1e" : "#ffb366")};
   padding: 30px 0 0 0; 
   margin-top: 50px;
   box-sizing: border-box;
-  box-shadow: 0 0 0 100vmax ${(props) => props.theme.footerBg || "#ffb366"};
+  /* Трюк для фону на всю ширину */
+  box-shadow: 0 0 0 100vmax ${(props) => props.theme.footerBg || (props.theme.body === "#121212" ? "#1e1e1e" : "#ffb366")};
   clip-path: inset(0 -100vmax);
   overflow: hidden;
   transition: background-color 0.3s ease;
@@ -18,7 +19,7 @@ export const FooterContainer = styled.div`
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
-  align-items: flex-end; /* Залишаємо вирівнювання по низу */
+  align-items: flex-end;
   box-sizing: border-box;
 
   @media (max-width: 1024px) {
@@ -31,14 +32,12 @@ export const FooterContainer = styled.div`
 
 export const FooterLogo = styled.div`
   margin-right: 150px;
-  /* ПІДНІМАЄМО ЛОГОТИП: робимо нижній відступ більшим, ніж у тексту */
   margin-bottom: 60px; 
 
   img {
     height: 55px;
     width: auto;
     display: block;
-    /* Фільтр для видимості лого у темній темі */
     filter: ${(props) => 
       props.theme.body === "#121212" ? "invert(1) brightness(2)" : "none"};
   }
@@ -46,7 +45,6 @@ export const FooterLogo = styled.div`
   @media (max-width: 1024px) {
     margin-right: 0;
     margin-bottom: 0;
-    align-self: center;
   }
 `;
 
@@ -55,7 +53,6 @@ export const FooterInfoBlock = styled.div`
   flex-direction: column;
   gap: 5px;
   font-family: "Montserrat Alternates", sans-serif;
-  /* Текст залишаємо трохи нижче за логотип (30px від дна) */
   margin-bottom: 30px; 
 
   &.address-block {
@@ -66,7 +63,6 @@ export const FooterInfoBlock = styled.div`
     margin-right: 0 !important;
     margin-bottom: 0;
     align-items: center;
-    text-align: center;
   }
 `;
 
@@ -74,7 +70,7 @@ export const FooterTitle = styled.h4`
   font-weight: 600;
   font-size: 18px;
   margin-bottom: 10px;
-  /* Адаптивний колір тексту */
+  margin-top: 0;
   color: ${(props) => (props.theme.body === "#121212" ? "#fff" : "#000")};
 `;
 
@@ -82,6 +78,7 @@ export const FooterText = styled.p`
   font-weight: 400;
   font-size: 14px;
   line-height: 1.3;
+  margin: 0;
   color: ${(props) => (props.theme.body === "#121212" ? "#eee" : "#000")};
 `;
 
@@ -89,7 +86,6 @@ export const SocialWrapper = styled.div`
   display: flex;
   gap: 20px;
   align-items: center;
-  /* Соцмережі також на рівні з текстом */
   margin-bottom: 30px; 
 
   @media (max-width: 1024px) {
@@ -120,8 +116,6 @@ export const CharactersContainer = styled.div`
   gap: 15px;
   align-items: flex-end;
   cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
 
   @media (max-width: 1024px) {
     margin-left: 0;
@@ -134,16 +128,11 @@ export const CharacterImg = styled.img`
   width: auto;
   display: block;
   object-fit: contain;
-  transition: none; 
 
   transform: ${(props) => {
     let t = "";
-    if (props.$mirrored) {
-      t += "scaleX(-1) ";
-    }
-    if (props.$mirrored && props.$isMoving) {
-      t += "translateX(-40px)"; 
-    }
+    if (props.$mirrored) t += "scaleX(-1) ";
+    if (props.$mirrored && props.$isMoving) t += "translateX(-40px)"; 
     return t || "none";
   }};
 `;

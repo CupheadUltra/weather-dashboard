@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Sun, Moon } from "lucide-react"; // Імпортуємо іконки
+import { Sun, Moon } from "lucide-react";
 import {
   StyledHeader,
   LogoContainer,
@@ -12,14 +12,10 @@ import {
   MobileMenuBtn,
   MobileMenuPanel,
   ArrowIcon,
-  ThemeSwitcherContainer,
+  ThemeSwitcherContainer
 } from "./Header.styled";
 
-import {
-  ToggleWrapper,
-  ToggleInput,
-  Slider,
-} from "../Theme/ThemeToggle.styled";
+import { ToggleWrapper, ToggleInput, Slider } from "../Theme/ThemeToggle.styled";
 import logoImg from "../../imgs/logoForecast.svg";
 import userIcon from "../../imgs/userlogin.png";
 
@@ -29,41 +25,28 @@ const Header = ({ user, onOpenAuth, onLogout, toggleTheme, currentTheme }) => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
-  // Спільний компонент для перемикача з іконками, щоб не дублювати код
-  // Заміни свій внутрішній компонент ThemeSwitcher на цей:
-  // Header.jsx
-const ThemeSwitcher = () => (
-  <ThemeSwitcherContainer>
-    <Sun
-      size={20}
-      strokeWidth={2} // Додаємо товщину ліній для кращої видимості
-      color={currentTheme === "light" ? "#ffb366" : "#666"}
-      style={{
-        opacity: currentTheme === "light" ? 1 : 0.5,
-        transition: "0.3s",
-        display: "block" // Гарантує відображення
-      }}
-    />
-    <ToggleWrapper>
-      <ToggleInput
-        type="checkbox"
-        onChange={toggleTheme}
-        checked={currentTheme === "dark"}
+  const ThemeSwitcher = () => (
+    <ThemeSwitcherContainer>
+      <Sun 
+        size={20} 
+        color={currentTheme === "light" ? "#ffb366" : "#666"} 
+        style={{ opacity: currentTheme === "light" ? 1 : 0.5, transition: '0.3s' }}
       />
-      <Slider />
-    </ToggleWrapper>
-    <Moon
-      size={20}
-      strokeWidth={2}
-      color={currentTheme === "dark" ? "#ffb366" : "#666"}
-      style={{
-        opacity: currentTheme === "dark" ? 1 : 0.5,
-        transition: "0.3s",
-        display: "block"
-      }}
-    />
-  </ThemeSwitcherContainer>
-);
+      <ToggleWrapper>
+        <ToggleInput 
+          type="checkbox" 
+          onChange={toggleTheme} 
+          checked={currentTheme === "dark"} 
+        />
+        <Slider />
+      </ToggleWrapper>
+      <Moon 
+        size={20} 
+        color={currentTheme === "dark" ? "#ffb366" : "#666"} 
+        style={{ opacity: currentTheme === "dark" ? 1 : 0.5, transition: '0.3s' }}
+      />
+    </ThemeSwitcherContainer>
+  );
 
   return (
     <StyledHeader>
@@ -77,8 +60,7 @@ const ThemeSwitcher = () => (
         <a href="#menu">Menu</a>
       </NavLinks>
 
-      {/* Перемикач для десктопа */}
-      <div style={{ marginLeft: "auto", marginRight: "20px" }}>
+      <div style={{ marginLeft: 'auto', marginRight: '20px' }} className="desktop-only">
         <ThemeSwitcher />
       </div>
 
@@ -100,38 +82,15 @@ const ThemeSwitcher = () => (
 
       <MobileMenuPanel isOpen={isMenuOpen}>
         <div className="links-col">
-          <a href="#who" onClick={closeMenu}>
-            Who we are
-          </a>
-          <a href="#contacts" onClick={closeMenu}>
-            Contacts
-          </a>
-          <a href="#menu" onClick={closeMenu}>
-            Menu
-          </a>
+          <a href="#who" onClick={closeMenu}>Who we are</a>
+          <a href="#contacts" onClick={closeMenu}>Contacts</a>
+          <a href="#menu" onClick={closeMenu}>Menu</a>
         </div>
-
         <div className="profile-col">
-          <ProfileIcon
-            src={userIcon}
-            alt="profile"
-            style={{ width: "120px", height: "120px" }}
-          />
-          {!user && (
-            <SignUpBtn
-              onClick={() => {
-                onOpenAuth();
-                closeMenu();
-              }}
-            >
-              Sign Up
-            </SignUpBtn>
-          )}
+          <ProfileIcon src={userIcon} alt="profile" style={{ width: "120px", height: "120px" }} />
+          {!user && <SignUpBtn onClick={() => { onOpenAuth(); closeMenu(); }}>Sign Up</SignUpBtn>}
           {user && <UserName>{user.username}</UserName>}
-
-          <div style={{ marginTop: "30px" }}>
-            <ThemeSwitcher />
-          </div>
+          <div style={{ marginTop: '20px' }}><ThemeSwitcher /></div>
         </div>
       </MobileMenuPanel>
     </StyledHeader>
