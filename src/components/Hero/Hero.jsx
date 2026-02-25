@@ -43,7 +43,7 @@ const Hero = ({ onSearch }) => {
   };
 
   return (
-    <HeroSection $bg={bgImg}>
+    <HeroSection $bg={bgImg} id="dashboard">
       <Title>Weather dashboard</Title>
 
       <InfoContainer>

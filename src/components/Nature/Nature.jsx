@@ -15,9 +15,10 @@ import { NatureSection, NatureTitle, SwiperWrapper } from "./Nature.styled";
 
 const Nature = () => {
   const images = [nature1, nature2, nature3, nature4, nature5];
+  
   return (
     <div className="container">
-      <NatureSection>
+      <NatureSection id="gallery">
         <NatureTitle>Beautiful nature</NatureTitle>
         <SwiperWrapper>
           <Swiper
@@ -25,8 +26,8 @@ const Nature = () => {
             effect={"coverflow"}
             grabCursor={true}
             centeredSlides={true}
+            initialSlide={Math.floor(images.length / 2)} 
             loop={true}
-            loopAdditionalSlides={3}
             slidesPerView={"auto"}
             coverflowEffect={{
               rotate: 0,

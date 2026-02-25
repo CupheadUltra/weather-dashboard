@@ -19,6 +19,9 @@ const GlobalStyle = createGlobalStyle`
     transition: background-color 0.3s ease;
     margin: 0; padding: 0; overflow-x: hidden;
   }
+    html {
+  scroll-behavior: smooth;
+}
 `;
 
 function App() {
@@ -106,7 +109,7 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme} >
       <GlobalStyle />
       <Header
         user={user}

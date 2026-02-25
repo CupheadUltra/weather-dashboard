@@ -34,7 +34,7 @@ const Footer = () => {
   };
 
   return (
-    <StyledFooter>
+    <StyledFooter id="contacts">
       <FooterContainer>
         <FooterLogo>
           <img src={logo} alt="Logo" />

@@ -93,13 +93,13 @@ export const SearchWrapper = styled.div`
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
   overflow: hidden;
-  background-color: white; /* Чіткий фон для інпуту */
+  background-color: white;
 
   input {
     flex: 1;
-    padding: 0 15px; /* Менший паддінг для мобілки */
+    padding: 0 15px;
     border: none;
-    font-size: 16px; /* Оптимально для мобільних */
+    font-size: 16px;
     background-color: transparent;
     outline: none;
     color: #000;
@@ -113,7 +113,7 @@ export const SearchWrapper = styled.div`
   button {
     background-color: #ffb366;
     border: none;
-    min-width: 60px; /* Фіксована ширина кнопки, щоб лупа не тікала */
+    min-width: 60px; 
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -121,9 +121,9 @@ export const SearchWrapper = styled.div`
     color: white;
 
     svg {
-      width: 28px; /* Робимо лупу трохи більшою */
+      width: 28px;
       height: 28px;
-      stroke-width: 2.5; /* Робимо лінії товстішими для видимості */
+      stroke-width: 2.5;
     }
   }
 `;

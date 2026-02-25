@@ -141,37 +141,57 @@ export const MobileMenuBtn = styled.button`
   }
 `;
 
-export const ArrowIcon = styled.span`
-  display: inline-block;
-  transition: transform 0.3s;
-  transform: ${(props) => (props.isOpen ? "rotate(90deg)" : "rotate(0deg)")};
+export const CloseMenuBtn = styled.span`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 45px; 
+  line-height: 1;
+  color: ${(props) => props.theme.text};
+  cursor: pointer;
+  z-index: 1100; 
+  
+  &:active {
+    background-color: rgba(128, 128, 128, 0.1);
+    border-radius: 50%;
+  }
 `;
 
 export const MobileMenuPanel = styled.div`
   position: fixed;
   top: 0;
-  left: 0;
+  right: ${(props) => (props.isOpen ? "0" : "-100%")};
   width: 100%;
   height: 100vh;
-  background: ${(props) => props.theme.body};
-  display: ${(props) => (props.isOpen ? "flex" : "none")};
+  background-color: ${(props) => props.theme.body};
+  z-index: 1000;
+  transition: right 0.4s ease-in-out;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  z-index: 5000;
-  padding: 20px;
+  padding: 100px 40px 40px;
+  box-sizing: border-box;
 
   .links-col {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    gap: 25px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    padding-bottom: 30px;
+
     a {
-      font-size: 28px;
+      font-size: 26px;
+      font-weight: 700;
       text-decoration: none;
       color: ${(props) => props.theme.text};
-      font-weight: 700;
+      text-align: center;
     }
   }
 
@@ -179,20 +199,20 @@ export const MobileMenuPanel = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    width: 80%;
-    padding-top: 30px;
-    border-top: 1px solid ${(props) => props.theme.headerBorder};
+    gap: 15px;
+
+    .theme-mobile {
+      margin-top: 30px;
+      padding: 15px 25px;
+      background: rgba(128, 128, 128, 0.1);
+      border-radius: 30px;
+    }
   }
 `;
 
-export const CloseMenuBtn = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: none;
-  border: none;
-  color: ${(props) => props.theme.text};
-  font-size: 40px;
-  cursor: pointer;
+export const ArrowIcon = styled.span`
+  display: inline-block;
+  margin-left: 8px;
+  transition: transform 0.3s;
+  transform: ${(props) => (props.isOpen ? "rotate(90deg)" : "rotate(0deg)")};
 `;

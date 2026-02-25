@@ -13,6 +13,7 @@ import {
   MobileMenuPanel,
   ArrowIcon,
   ThemeSwitcherContainer,
+  CloseMenuBtn,
 } from "./Header.styled";
 
 import {
@@ -26,41 +27,20 @@ import userIcon from "../../imgs/userlogin.png";
 const Header = ({ user, onOpenAuth, onLogout, toggleTheme, currentTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Закриття мобільного меню при натисканні на клавішу Escape
   useEffect(() => {
-    const handleEsc = (event) => {
-      if (event.key === "Escape") {
-        setIsMenuOpen(false);
-      }
-    };
-    if (isMenuOpen) {
-      window.addEventListener("keydown", handleEsc);
-    }
+    const handleEsc = (e) => e.key === "Escape" && setIsMenuOpen(false);
+    if (isMenuOpen) window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
   }, [isMenuOpen]);
-
-  // Закриття меню при зміні розміру екрана (опціонально, для надійності)
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 1024) {
-        setIsMenuOpen(false);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const displayName = user?.username || user?.email || "User";
 
   const ThemeSwitcher = () => (
     <ThemeSwitcherContainer>
       <Sun
-        size={20}
+        size={18}
         color={currentTheme === "light" ? "#ffb366" : "#666"}
-        style={{
-          opacity: currentTheme === "light" ? 1 : 0.5,
-          transition: "0.3s",
-        }}
+        style={{ opacity: currentTheme === "light" ? 1 : 0.5 }}
       />
       <ToggleWrapper>
         <ToggleInput
@@ -71,12 +51,9 @@ const Header = ({ user, onOpenAuth, onLogout, toggleTheme, currentTheme }) => {
         <Slider />
       </ToggleWrapper>
       <Moon
-        size={20}
+        size={18}
         color={currentTheme === "dark" ? "#ffb366" : "#666"}
-        style={{
-          opacity: currentTheme === "dark" ? 1 : 0.5,
-          transition: "0.3s",
-        }}
+        style={{ opacity: currentTheme === "dark" ? 1 : 0.5 }}
       />
     </ThemeSwitcherContainer>
   );
@@ -88,16 +65,19 @@ const Header = ({ user, onOpenAuth, onLogout, toggleTheme, currentTheme }) => {
       </LogoContainer>
 
       <NavLinks>
-        <a href="#who">Who we are</a>
+        <a href="#gallery">Gallery</a>
         <a href="#contacts">Contacts</a>
-        <a href="#menu">Menu</a>
+        <a href="#dashboard">Dashboard</a>
       </NavLinks>
 
-      <div style={{ marginLeft: 'auto', marginRight: '20px' }} className="desktop-only">
+      <div
+        style={{ marginLeft: "auto", marginRight: "20px" }}
+        className="desktop-only"
+      >
         <ThemeSwitcher />
       </div>
 
-      <MobileMenuBtn onClick={() => setIsMenuOpen(!isMenuOpen)}>
+      <MobileMenuBtn onClick={() => setIsMenuOpen(true)}>
         Menu <ArrowIcon isOpen={isMenuOpen}>❯</ArrowIcon>
       </MobileMenuBtn>
 
@@ -110,52 +90,63 @@ const Header = ({ user, onOpenAuth, onLogout, toggleTheme, currentTheme }) => {
         ) : (
           <SignUpBtn onClick={onOpenAuth}>Sign Up</SignUpBtn>
         )}
-        <ProfileIcon 
-            src={userIcon} 
-            alt="profile" 
-            style={{ filter: currentTheme === "dark" ? "invert(1) brightness(2)" : "none" }}
+        <ProfileIcon
+          src={userIcon}
+          alt="profile"
+          style={{
+            filter:
+              currentTheme === "dark" ? "invert(1) brightness(2)" : "none",
+          }}
         />
       </AuthSection>
 
-      {/* Мобільна панель меню */}
       <MobileMenuPanel isOpen={isMenuOpen}>
-        {/* Кнопка закриття (хрестик) */}
-        <span
-          onClick={() => setIsMenuOpen(false)}
-          style={{
-            position: "absolute",
-            top: "20px",
-            right: "25px",
-            cursor: "pointer",
-            fontSize: "40px",
-            color: currentTheme === "dark" ? "#fff" : "#333",
-            zIndex: 101,
-            lineHeight: "1"
-          }}
-        >
+        <CloseMenuBtn onClick={() => setIsMenuOpen(false)}>
           &times;
-        </span>
+        </CloseMenuBtn>
 
         <div className="links-col">
-          <a href="#who" onClick={() => setIsMenuOpen(false)}>Who we are</a>
-          <a href="#contacts" onClick={() => setIsMenuOpen(false)}>Contacts</a>
-          <a href="#menu" onClick={() => setIsMenuOpen(false)}>Menu</a>
+          <a href="#gallery" onClick={() => setIsMenuOpen(false)}>
+            Gallery
+          </a>
+          <a href="#contacts" onClick={() => setIsMenuOpen(false)}>
+            Contacts
+          </a>
+          <a href="#dashboard" onClick={() => setIsMenuOpen(false)}>
+            Dashboard
+          </a>
         </div>
-        
+
         <div className="profile-col">
-          <ProfileIcon src={userIcon} alt="profile" style={{ width: "120px", height: "120px" }} />
-          {!user && (
-            <SignUpBtn onClick={() => { onOpenAuth(); setIsMenuOpen(false); }}>
+          <ProfileIcon
+            src={userIcon}
+            alt="profile"
+            style={{ width: "80px", height: "80px", marginBottom: "10px" }}
+          />
+          {user ? (
+            <>
+              <UserName style={{ fontSize: "20px" }}>{displayName}</UserName>
+              <LogoutBtn
+                onClick={() => {
+                  onLogout();
+                  setIsMenuOpen(false);
+                }}
+              >
+                Log Out
+              </LogoutBtn>
+            </>
+          ) : (
+            <SignUpBtn
+              onClick={() => {
+                onOpenAuth();
+                setIsMenuOpen(false);
+              }}
+            >
               Sign Up
             </SignUpBtn>
           )}
-          {user && <UserName style={{ fontSize: "22px", margin: "10px 0" }}>{displayName}</UserName>}
-          {user && (
-            <LogoutBtn onClick={() => { onLogout(); setIsMenuOpen(false); }}>
-              Log Out
-            </LogoutBtn>
-          )}
-          <div style={{ marginTop: '30px' }}>
+
+          <div className="theme-mobile">
             <ThemeSwitcher />
           </div>
         </div>
