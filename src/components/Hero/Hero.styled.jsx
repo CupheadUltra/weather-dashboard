@@ -5,7 +5,7 @@ export const HeroSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 80px 20px;
+  padding: 100px 20px;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url(${(props) => props.$bg}) no-repeat center center;
   background-size: cover;
@@ -99,10 +99,17 @@ export const SearchWrapper = styled.div`
     flex: 1;
     padding: 0 15px;
     border: none;
-    font-size: 16px;
-    background-color: transparent;
     outline: none;
     color: #000;
+
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+
+    &::placeholder {
+      color: #999;
+      font-family: "Montserrat Alternates", sans-serif;
+    }
 
     @media (min-width: 900px) {
       padding: 0 25px;
@@ -113,18 +120,22 @@ export const SearchWrapper = styled.div`
   button {
     background-color: #ffb366;
     border: none;
-    min-width: 60px; 
+    min-width: 60px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #ffa040;
+    }
 
     svg {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       stroke-width: 2.5;
     }
   }
 `;
-
