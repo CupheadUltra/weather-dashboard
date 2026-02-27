@@ -10,6 +10,7 @@ import Pets from "./components/Pets/Pets";
 import Nature from "./components/Nature/Nature";
 import Footer from "./components/Footer/Footer";
 import AuthModal from "./components/Auth/AuthModal";
+import MusicPlayer from "./components/Music/MusicPlayer";
 import "./index.css";
 
 const GlobalStyle = createGlobalStyle`
@@ -109,7 +110,8 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme} >
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <MusicPlayer />
       <GlobalStyle />
       <Header
         user={user}
