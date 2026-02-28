@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/weather-dashboard/static/css/main.80b2db85.css",
-    "main.js": "/weather-dashboard/static/js/main.37784833.js",
+    "main.js": "/weather-dashboard/static/js/main.060cbdd2.js",
     "static/media/City_of_Tears.mp3": "/weather-dashboard/static/media/City_of_Tears.f96827ea90a471dabfec.mp3",
     "static/media/It_s_Raining_Somewhere_Else.mp3": "/weather-dashboard/static/media/It_s_Raining_Somewhere_Else.9562d4fcc0664a73d036.mp3",
     "static/media/hero-bg.png": "/weather-dashboard/static/media/hero-bg.c58733bb3dd3891ead13.png",
@@ -17,10 +17,10 @@
     "static/media/logoForecast.svg": "/weather-dashboard/static/media/logoForecast.5bb312822fb1dc1245ae3535281599e9.svg",
     "index.html": "/weather-dashboard/index.html",
     "main.80b2db85.css.map": "/weather-dashboard/static/css/main.80b2db85.css.map",
-    "main.37784833.js.map": "/weather-dashboard/static/js/main.37784833.js.map"
+    "main.060cbdd2.js.map": "/weather-dashboard/static/js/main.060cbdd2.js.map"
   },
   "entrypoints": [
     "static/css/main.80b2db85.css",
-    "static/js/main.37784833.js"
+    "static/js/main.060cbdd2.js"
   ]
 }
