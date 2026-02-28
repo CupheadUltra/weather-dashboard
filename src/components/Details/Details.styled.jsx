@@ -19,8 +19,10 @@ export const DetailsGrid = styled.div`
   gap: 20px;
   margin-bottom: 40px;
 
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr 1fr;
+  @media (max-width: 320px) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 10px;
   }
 `;
 
@@ -50,6 +52,13 @@ export const DetailCard = styled.div`
     font-size: 20px;
     font-weight: 700;
     margin: 0;
+  }
+  @media (max-width: 320px) {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 
