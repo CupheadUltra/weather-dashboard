@@ -25,20 +25,17 @@ const Hero = ({ onSearch }) => {
   const getSuffix = (n) => {
     if (n > 3 && n < 21) return "th";
     switch (n % 10) {
-      case 1:
-        return "st";
-      case 2:
-        return "nd";
-      case 3:
-        return "rd";
-      default:
-        return "th";
+      case 1: return "st";
+      case 2: return "nd";
+      case 3: return "rd";
+      default: return "th";
     }
   };
 
   const handleSearch = () => {
     if (onSearch && query.trim()) {
-      onSearch(query);
+      onSearch(query.trim());
+      setQuery("");
     }
   };
 
@@ -71,14 +68,16 @@ const Hero = ({ onSearch }) => {
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         />
-        <button type="button" onClick={handleSearch}>
+        <button type="button" onClick={handleSearch} aria-label="Search">
           <svg
-            width="20"
-            height="20"
+            width="22"
+            height="22"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="black"
+            stroke="currentColor" 
             strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>

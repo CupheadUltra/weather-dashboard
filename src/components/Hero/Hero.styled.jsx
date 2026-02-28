@@ -140,7 +140,7 @@ export const SearchWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: black;
     transition: background-color 0.2s;
 
     &:hover {

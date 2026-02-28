@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { Toaster, toast } from 'react-hot-toast';
 import { lightTheme, darkTheme } from "./components/theme";
 
 import Header from "./components/Header/Header";
@@ -20,9 +21,9 @@ const GlobalStyle = createGlobalStyle`
     transition: background-color 0.3s ease;
     margin: 0; padding: 0; overflow-x: hidden;
   }
-    html {
-  scroll-behavior: smooth;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 `;
 
 function App() {
@@ -46,7 +47,6 @@ function App() {
       const saved = localStorage.getItem(`weatherCities_${user.email}`);
       if (saved) {
         const parsed = JSON.parse(saved);
-
         setWeatherList(parsed.filter((city) => city.isFavorite));
       }
     } else {
@@ -64,10 +64,15 @@ function App() {
       );
     }
   }, [weatherList, user]);
-
-  const handleSearch = async (cityName) => {
-    if (!cityName || !user) {
-      alert(user ? "Please enter city name" : "Please log in to add cities!");
+const handleSearch = async (cityName) => {
+    if (!cityName) {
+      toast.error("Please enter city name!");
+      return;
+    }
+    
+    if (!user) {
+      toast.error("Please log in to add cities!");
+      setIsModalOpen(true);
       return;
     }
 
@@ -79,7 +84,7 @@ function App() {
 
       if (resCurrent.ok) {
         if (weatherList.some((city) => city.id === dataCurrent.id)) {
-          alert("This city is already in your list!");
+          toast.error("This city is already in your list!");
           return;
         }
 
@@ -101,16 +106,29 @@ function App() {
         };
 
         setWeatherList((prev) => [newCity, ...prev]);
+        toast.success(`Weather in ${dataCurrent.name} found!`);
       } else {
-        alert("City not found!");
+        toast.error("City not found! Please check the spelling.");
       }
     } catch (error) {
       console.error("Search error:", error);
+      toast.error("Server error. Please try again later.");
     }
   };
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <Toaster 
+        position="top-center" 
+        toastOptions={{
+          style: {
+            fontFamily: 'Montserrat Alternates',
+            borderRadius: '10px',
+            background: theme === 'light' ? '#fff' : '#333',
+            color: theme === 'light' ? '#333' : '#fff',
+          },
+        }}
+      />
       <MusicPlayer />
       <GlobalStyle />
       <Header
@@ -120,6 +138,7 @@ function App() {
           setUser(null);
           setIsLoaded(false);
           localStorage.removeItem("weatherUser");
+          toast.success("Logged out successfully");
         }}
         toggleTheme={() => {
           const next = theme === "light" ? "dark" : "light";
@@ -136,9 +155,10 @@ function App() {
         >
           <Cards
             weatherList={weatherList}
-            onDelete={(id) =>
-              setWeatherList((p) => p.filter((c) => c.id !== id))
-            }
+            onDelete={(id) => {
+              setWeatherList((p) => p.filter((c) => c.id !== id));
+              toast.success("City removed");
+            }}
             onSeeMore={(data) => {
               setActiveDetails(data);
               setTimeout(
@@ -179,6 +199,7 @@ function App() {
           const all = JSON.parse(localStorage.getItem("allUsers") || "[]");
           localStorage.setItem("allUsers", JSON.stringify([...all, u]));
           setIsModalOpen(false);
+          toast.success(`Welcome, ${u.name || 'User'}!`);
         }}
         onLogin={(loginData) => {
           const all = JSON.parse(localStorage.getItem("allUsers") || "[]");
@@ -189,6 +210,7 @@ function App() {
             JSON.stringify(found || loginData)
           );
           setIsModalOpen(false);
+          toast.success("Login successful!");
         }}
       />
     </ThemeProvider>
